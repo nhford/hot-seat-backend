@@ -1,0 +1,393 @@
+<div id="content" role="main">
+<!-- fs_general_header -->
+<div class="adblock">
+<!-- div#fs_fs_general_header  -->
+<style>
+    #srcom   .adblock.primis,
+    #content .adblock.primis { height: auto; width: 728px; max-width:100%; aspect-ratio: 1.677419;  margin: auto; }
+</style>
+<div class="adblock primis">
+<div id="FreeStarVideoAdContainer">
+<div id="freestar-video-parent">
+<div id="freestar-video-child"></div>
+</div>
+</div>
+</div>
+<!-- /div.#fs_fs_general_header -->
+</div>
+<div class="table_wrapper" id="all_coaching_results">
+<div class="section_heading assoc_coaching_results" id="coaching_results_sh">
+<span class="section_anchor" data-label="Coaching Results" id="coaching_results_link"></span><h2>Coaching Results</h2> <div class="section_heading_text">
+<ul>
+</ul>
+</div>
+</div>
+<div class="table_container" id="div_coaching_results">
+<table class="sortable stats_table" data-cols-to-freeze="1,3" id="coaching_results">
+<caption>Coaching Results Table</caption>
+<colgroup><col/><col/><col/><col/><col/><col/><col/><col/><col/><col/><col/><col/><col/><col/><col/><col/><col/><col/><col/><col/></colgroup>
+<thead>
+<tr class="over_header">
+<th aria-label="" class="over_header center" colspan="4" data-stat=""></th><th></th>
+<th aria-label="" class="over_header center" colspan="4" data-stat=""></th>
+<th aria-label="" class="over_header center" colspan="3" data-stat="header_srs"><a href="https://www.sports-reference.com/blog/2015/03/srs-calculation-details/" title=""> Simple Rating System </a></th>
+<th aria-label="" class="over_header center" colspan="3" data-stat="header_playoffs">Playoffs</th>
+<th aria-label="" class="over_header center" colspan="2" data-stat=""></th>
+<th aria-label="" class="over_header center" colspan="2" data-stat="header_challenges">Challenges</th><th></th>
+</tr>
+<tr>
+<th aria-label="Year" class="poptip sort_default_asc left" data-stat="year_id" scope="col">Year</th>
+<th aria-label="Age" class="poptip sort_default_asc center" data-stat="age" data-tip="Player's age on December 31st of that year" scope="col">Age</th>
+<th aria-label="Tm" class="poptip sort_default_asc show_partial_when_sorting left" data-stat="team" scope="col">Tm</th>
+<th aria-label="Lg" class="poptip sort_default_asc center" data-stat="league_id" data-tip="&lt;b&gt;League&lt;/b&gt;&lt;br&gt;&lt;b&gt;NFL&lt;/b&gt; - National Football League&lt;br&gt;&lt;b&gt;AFL&lt;/b&gt; - American Football League&lt;br&gt;&lt;b&gt;AAFC&lt;/b&gt; - All-American Football Conference&lt;br&gt;&lt;b&gt;APFA&lt;/b&gt; - American Professional Football Association" scope="col">Lg</th>
+<th aria-label="Games" class="poptip center" data-over-header="Games" data-stat="g" data-tip="Games played" scope="col">G</th>
+<th aria-label="Wins" class="poptip center" data-stat="wins" data-tip="Games Won" scope="col">W</th>
+<th aria-label="Losses" class="poptip center" data-stat="losses" data-tip="Games Lost" scope="col">L</th>
+<th aria-label="Ties" class="poptip center" data-stat="ties" data-tip="Tie Games" scope="col">T</th>
+<th aria-label="W-L%" class="poptip hide_non_quals center" data-stat="win_loss_perc" data-tip="&lt;b&gt;Win-Loss Percentage of team&lt;/b&gt;&lt;br&gt;For coaches, minimum to qualify for leading is 50 games.&lt;br&gt;After 1972, ties are counted as half-wins and half-losses.&lt;br&gt;Prior, the league didn\'t count them as games in W-L% calculations." scope="col">W-L%</th>
+<th aria-label="SRS" class="poptip center" data-over-header="Simple Rating System" data-stat="srs_total" data-tip="&lt;b&gt;Simple Rating System&lt;/b&gt;&lt;br&gt;Team quality relative to average (0.0) as measured by SRS (Simple Rating System)&lt;br&gt;SRS = MoV + SoS = OSRS + DSRS&lt;br&gt;The difference in SRS can be considered a point spread (add about 2 pt for HFA)&lt;br /&gt;Note that for partial coach seasons, the full team season SRS is shown" scope="col">SRS</th>
+<th aria-label="OSRS" class="poptip center" data-over-header="Simple Rating System" data-stat="srs_offense" data-tip="&lt;b&gt;Offensive SRS&lt;/b&gt;&lt;br&gt;Team offense quality relative to average (0.0) as measured by SRS (Simple Rating System)" scope="col">OSRS</th>
+<th aria-label="DSRS" class="poptip center" data-over-header="Simple Rating System" data-stat="srs_defense" data-tip="&lt;b&gt;Defensive SRS&lt;/b&gt;&lt;br&gt;Team defense quality relative to average (0.0) as measured by SRS (Simple Rating System)" scope="col">DSRS</th>
+<th aria-label="Playoff Games" class="poptip center" data-over-header="Playoffs" data-stat="g_playoffs" data-tip="Playoff games coached in" scope="col">G plyf</th>
+<th aria-label="Playoff Wins" class="poptip center" data-over-header="Playoffs" data-stat="wins_playoffs" data-tip="All Playoff Wins" scope="col">W plyf</th>
+<th aria-label="Playoff Losses" class="poptip center" data-over-header="Playoffs" data-stat="losses_playoffs" data-tip="Playoff games lost" scope="col">L plyf</th>
+<th aria-label="W-L%" class="poptip show_partial_when_sorting hide_non_quals center" data-stat="win_loss_playoffs_perc" data-tip="&lt;b&gt;Win-Loss Percentage of team in playoffs&lt;/b&gt;&lt;br&gt;For coaches, minimum to qualify for leading is 4 games.&lt;br&gt;Includes games in the pre-Super Bowl era." scope="col">W-L%</th>
+<th aria-label="Rank" class="poptip sort_default_asc show_partial_when_sorting center" data-stat="rank_team" data-tip="Team's Finish in Division" scope="col">Rank</th>
+<th aria-label="Num" class="poptip center" data-over-header="Challenges" data-stat="chall_num" data-tip="Total challenges by team during his tenure (includes playoffs)" scope="col">Num</th>
+<th aria-label="Won" class="poptip center" data-over-header="Challenges" data-stat="chall_won" data-tip="Challenges won (original call was overturned, includes playoffs)" scope="col">Won</th>
+<th aria-label="Notes" class="poptip sort_default_asc show_partial_when_sorting left" data-stat="coach_remarks" scope="col">Notes</th>
+</tr>
+</thead>
+<tbody><tr><th class="left" data-stat="year_id" scope="row"><a href="/years/2010/">2010</a></th><td class="right" data-stat="age">42</td><td class="left" data-stat="team"><a href="/teams/sfo/2010.htm">SFO</a></td><td class="left" data-stat="league_id">NFL</td><td class="right" data-stat="g"><a href="/teams/sfo/2010_games.htm" title="Click for season gamelogs">1</a></td><td class="right" data-stat="wins">1</td><td class="right iz" data-stat="losses">0</td><td class="right iz" data-stat="ties">0</td><td class="right" data-stat="win_loss_perc">1.000</td><td class="right" data-stat="srs_total">-5.8</td><td class="right" data-stat="srs_offense">-4.7</td><td class="right" data-stat="srs_defense">-1.1</td><td class="right iz" data-stat="g_playoffs"></td><td class="right iz" data-stat="wins_playoffs"></td><td class="right iz" data-stat="losses_playoffs"></td><td class="right iz" data-stat="win_loss_playoffs_perc"></td><td class="right" data-stat="rank_team">3</td><td class="right" data-stat="chall_num">1</td><td class="right iz" data-stat="chall_won">0</td><td class="left" data-stat="coach_remarks">Coach starting Week 17 </td></tr>
+<tr><th class="left" data-stat="year_id" scope="row"><a href="/years/2015/">2015</a></th><td class="right" data-stat="age">47</td><td class="left" data-stat="team"><a href="/teams/sfo/2015.htm">SFO</a></td><td class="left" data-stat="league_id">NFL</td><td class="right" data-stat="g"><a href="/teams/sfo/2015_games.htm" title="Click for season gamelogs">16</a></td><td class="right" data-stat="wins">5</td><td class="right" data-stat="losses">11</td><td class="right iz" data-stat="ties">0</td><td class="right" data-stat="win_loss_perc">.313</td><td class="right" data-stat="srs_total">-5.5</td><td class="right" data-stat="srs_offense">-6.0</td><td class="right" data-stat="srs_defense">0.5</td><td class="right iz" data-stat="g_playoffs"></td><td class="right iz" data-stat="wins_playoffs"></td><td class="right iz" data-stat="losses_playoffs"></td><td class="right iz" data-stat="win_loss_playoffs_perc"></td><td class="right" data-stat="rank_team">4</td><td class="right" data-stat="chall_num">8</td><td class="right" data-stat="chall_won">2</td><td class="left" data-stat="coach_remarks"> </td></tr>
+</tbody><tfoot><tr><th class="left" colspan="2" data-stat="year_id" scope="row">2 yrs</th><td class="left iz" data-stat="team"></td><td class="left iz" data-stat="league_id"></td><td class="right" data-stat="g">17</td><td class="right" data-stat="wins">6</td><td class="right" data-stat="losses">11</td><td class="right iz" data-stat="ties">0</td><td class="right non_qual" data-stat="win_loss_perc">.353</td><td class="right iz" data-stat="srs_total"></td><td class="right iz" data-stat="srs_offense"></td><td class="right iz" data-stat="srs_defense"></td><td class="right iz" data-stat="g_playoffs">0</td><td class="right iz" data-stat="wins_playoffs">0</td><td class="right iz" data-stat="losses_playoffs">0</td><td class="right non_qual iz" data-stat="win_loss_playoffs_perc"></td><td class="right" data-stat="rank_avg">3.5</td><td class="right" data-stat="chall_num">9</td><td class="right" data-stat="chall_won">2</td><td class="left iz" data-stat="coach_remarks"></td></tr>
+</tfoot>
+</table>
+</div>
+</div>
+<div class="table_wrapper setup_commented commented" id="all_coaching_ranks">
+<div class="section_heading assoc_coaching_ranks" id="coaching_ranks_sh">
+<span class="section_anchor" data-label="Team's Ranks" id="coaching_ranks_link"></span><h2>Team's Ranks</h2> <div class="section_heading_text">
+<ul><li>Team ranks, totals at bottom are percentiles</li>
+</ul>
+</div>
+</div><div class="placeholder"></div>
+<!--
+
+<div class="table_container" id="div_coaching_ranks">
+    
+    <table class="sortable stats_table" id="coaching_ranks" data-cols-to-freeze="1,2">
+    <caption>Team's Ranks Table</caption>
+    
+
+   <colgroup><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col><col></colgroup>
+   <thead>
+
+      
+      <tr class="over_header">
+         <th aria-label="" data-stat="" colspan="4" class=" over_header center" ></th>
+         <th aria-label="" data-stat="header_rall" colspan="4" class=" over_header center" >Overall</th>
+         <th aria-label="" data-stat="header_off" colspan="3" class=" over_header center" >Offense</th>
+         <th aria-label="" data-stat="header_off_rush" colspan="5" class=" over_header center" >Rushing Off</th>
+         <th aria-label="" data-stat="header_off_pass" colspan="5" class=" over_header center" >Passing Off</th>
+         <th aria-label="" data-stat="header_def" colspan="3" class=" over_header center" >Defense</th>
+         <th aria-label="" data-stat="header_def_rush" colspan="5" class=" over_header center" >Rushing Def</th>
+         <th aria-label="" data-stat="header_def_pass" colspan="5" class=" over_header center" >Passing Def</th>
+      </tr>
+            
+      <tr>
+         <th aria-label="Year" data-stat="year_id" scope="col" class=" poptip sort_default_asc left" >Year</th>
+         <th aria-label="Tm" data-stat="team" scope="col" class=" poptip sort_default_asc show_partial_when_sorting left" >Tm</th>
+         <th aria-label="Role" data-stat="coordinator_type" scope="col" class=" poptip sort_default_asc center" data-tip="Coordinator type for this coach (OC = Offensive Coordinator, DC = Defensive Coordinator)" >Role</th>
+         <th aria-label="Tms" data-stat="teams_in_league" scope="col" class=" poptip sort_default_asc center" data-tip="Number of teams in the league this season" >Tms</th>
+         <th aria-label="WL%" data-stat="rank_win_percentage" scope="col" class=" poptip center" data-over-header="Overall" >WL%</th>
+         <th aria-label="T/G" data-stat="rank_takeaway_giveaway" scope="col" class=" poptip sort_default_asc center" data-tip="Team's Rank in Takeaway/Giveaway Ratio" data-over-header="Overall" >T/G</th>
+         <th aria-label="Pts&#177;" data-stat="rank_points_diff" scope="col" class=" poptip sort_default_asc center" data-tip="Team's Rank in Point Differential<br>(the lower the number,<br> the more they outscored their opponents)" data-over-header="Overall" >Pts&#177;</th>
+         <th aria-label="Yds&#177;" data-stat="rank_yds_diff" scope="col" class=" poptip sort_default_asc center" data-tip="Team's Rank in Yardage Differential<br>(the lower the number,<br> the more they outgained their opponents)" data-over-header="Overall" >Yds&#177;</th>
+         <th aria-label="Yds" data-stat="rank_off_yds" scope="col" class=" poptip sort_default_asc center" data-over-header="Offense" >Yds</th>
+         <th aria-label="Pts" data-stat="rank_off_pts" scope="col" class=" poptip sort_default_asc center" data-over-header="Offense" >Pts</th>
+         <th aria-label="GvA" data-stat="rank_off_turnovers" scope="col" class=" poptip sort_default_asc center" data-tip="Rank in giveaways<br>Interceptions + Fumbles Lost<br>Lower is better" data-over-header="Offense" >GvA</th>
+         <th aria-label="Att" data-stat="rank_off_rush_att" scope="col" class=" poptip sort_default_asc center" data-over-header="Rushing Off" >Att</th>
+         <th aria-label="Yds" data-stat="rank_off_rush_yds" scope="col" class=" poptip sort_default_asc center" data-over-header="Rushing Off" >Yds</th>
+         <th aria-label="TD" data-stat="rank_off_rush_td" scope="col" class=" poptip sort_default_asc center" data-over-header="Rushing Off" >TD</th>
+         <th aria-label="Y/A" data-stat="rank_off_rush_yds_per_att" scope="col" class=" poptip sort_default_asc center" data-over-header="Rushing Off" >Y/A</th>
+         <th aria-label="FL" data-stat="rank_off_fumbles_lost" scope="col" class=" poptip sort_default_asc center" data-over-header="Rushing Off" >FL</th>
+         <th aria-label="Att" data-stat="rank_off_pass_att" scope="col" class=" poptip sort_default_asc center" data-over-header="Passing Off" >Att</th>
+         <th aria-label="Yds" data-stat="rank_off_pass_yds" scope="col" class=" poptip sort_default_asc center" data-over-header="Passing Off" >Yds</th>
+         <th aria-label="TD" data-stat="rank_off_pass_td" scope="col" class=" poptip sort_default_asc center" data-over-header="Passing Off" >TD</th>
+         <th aria-label="Int" data-stat="rank_off_pass_int" scope="col" class=" poptip sort_default_asc center" data-over-header="Passing Off" >Int</th>
+         <th aria-label="NY/A" data-stat="rank_off_pass_net_yds_per_att" scope="col" class=" poptip sort_default_asc center" data-tip="Rank in Net Yards gained per pass attempt<br>(Passing Yards - Sack Yards) / (Passes Attempted + Times Sacked)" data-over-header="Passing Off" >NY/A</th>
+         <th aria-label="Yds" data-stat="rank_def_yds" scope="col" class=" poptip sort_default_asc center" data-over-header="Defense" >Yds</th>
+         <th aria-label="Pts" data-stat="rank_def_pts" scope="col" class=" poptip sort_default_asc center" data-over-header="Defense" >Pts</th>
+         <th aria-label="TkA" data-stat="rank_def_turnovers" scope="col" class=" poptip sort_default_asc center" data-tip="Rank in takeaways<br>Passes Interceptions + opponents Fumbles Lost<br>Lower is better" data-over-header="Defense" >TkA</th>
+         <th aria-label="Att" data-stat="rank_def_rush_att" scope="col" class=" poptip sort_default_asc center" data-over-header="Rushing Def" >Att</th>
+         <th aria-label="Yds" data-stat="rank_def_rush_yds" scope="col" class=" poptip sort_default_asc center" data-over-header="Rushing Def" >Yds</th>
+         <th aria-label="TD" data-stat="rank_def_rush_td" scope="col" class=" poptip sort_default_asc center" data-over-header="Rushing Def" >TD</th>
+         <th aria-label="Y/A" data-stat="rank_def_rush_yds_per_att" scope="col" class=" poptip sort_default_asc center" data-over-header="Rushing Def" >Y/A</th>
+         <th aria-label="FR" data-stat="rank_def_fumbles_rec" scope="col" class=" poptip sort_default_asc center" data-over-header="Rushing Def" >FR</th>
+         <th aria-label="Att" data-stat="rank_def_pass_att" scope="col" class=" poptip sort_default_asc center" data-over-header="Passing Def" >Att</th>
+         <th aria-label="Yds" data-stat="rank_def_pass_yds" scope="col" class=" poptip sort_default_asc center" data-over-header="Passing Def" >Yds</th>
+         <th aria-label="TD" data-stat="rank_def_pass_td" scope="col" class=" poptip sort_default_asc center" data-over-header="Passing Def" >TD</th>
+         <th aria-label="Int" data-stat="rank_def_pass_int" scope="col" class=" poptip sort_default_asc center" data-over-header="Passing Def" >Int</th>
+         <th aria-label="nY/A" data-stat="rank_def_pass_net_yds_per_att" scope="col" class=" poptip sort_default_asc center" data-tip="Rank in Net Yards gained per pass attempt by opposition<br>(Passing Yards - Sack Yards) / (Passes Attempted + Times Sacked)" data-over-header="Passing Def" >nY/A</th>
+      </tr>
+      </thead>
+<tbody><tr ><th scope="row" class="left " data-stat="year_id" ><a href="/years/2010/">2010</a></th><td class="left " data-stat="team" ><a href="/teams/sfo/2010.htm" title="San Francisco 49ers">SFO</a></td><td class="left " data-stat="coordinator_type" >HC</td><td class="right " data-stat="teams_in_league" >32</td><td class="right " data-stat="rank_win_percentage" >20</td><td class="right " data-stat="rank_takeaway_giveaway" >15</td><td class="right " data-stat="rank_points_diff" >20</td><td class="right " data-stat="rank_yds_diff" >21</td><td class="right " data-stat="rank_off_yds" >24</td><td class="right " data-stat="rank_off_pts" >24</td><td class="right " data-stat="rank_off_turnovers" >11</td><td class="right " data-stat="rank_off_rush_att" >25</td><td class="right " data-stat="rank_off_rush_yds" >19</td><td class="right " data-stat="rank_off_rush_td" >21</td><td class="right " data-stat="rank_off_rush_yds_per_att" >17</td><td class="right " data-stat="rank_off_fumbles_lost" >6</td><td class="right " data-stat="rank_off_pass_att" >22</td><td class="right " data-stat="rank_off_pass_yds" >18</td><td class="right " data-stat="rank_off_pass_td" >24</td><td class="right " data-stat="rank_off_pass_int" >13</td><td class="right " data-stat="rank_off_pass_net_yds_per_att" >15</td><td class="right " data-stat="rank_def_yds" >13</td><td class="right " data-stat="rank_def_pts" >16</td><td class="right " data-stat="rank_def_turnovers" >25</td><td class="right " data-stat="rank_def_rush_att" >23</td><td class="right " data-stat="rank_def_rush_yds" >6</td><td class="right " data-stat="rank_def_rush_td" >8</td><td class="right " data-stat="rank_def_rush_yds_per_att" >2</td><td class="right " data-stat="rank_def_fumbles_rec" >29</td><td class="right " data-stat="rank_def_pass_att" >22</td><td class="right " data-stat="rank_def_pass_yds" >24</td><td class="right " data-stat="rank_def_pass_td" >21</td><td class="right " data-stat="rank_def_pass_int" >17</td><td class="right " data-stat="rank_def_pass_net_yds_per_att" >22</td></tr>
+<tr ><th scope="row" class="left " data-stat="year_id" ><a href="/years/2015/">2015</a></th><td class="left " data-stat="team" ><a href="/teams/sfo/2015.htm" title="San Francisco 49ers">SFO</a></td><td class="left " data-stat="coordinator_type" >HC</td><td class="right " data-stat="teams_in_league" >32</td><td class="right " data-stat="rank_win_percentage" >26</td><td class="right " data-stat="rank_takeaway_giveaway" >22</td><td class="right " data-stat="rank_points_diff" >31</td><td class="right " data-stat="rank_yds_diff" >32</td><td class="right " data-stat="rank_off_yds" >31</td><td class="right " data-stat="rank_off_pts" >32</td><td class="right " data-stat="rank_off_turnovers" >4</td><td class="right " data-stat="rank_off_rush_att" >23</td><td class="right " data-stat="rank_off_rush_yds" >21</td><td class="right " data-stat="rank_off_rush_td" >24</td><td class="right " data-stat="rank_off_rush_yds_per_att" >20</td><td class="right " data-stat="rank_off_fumbles_lost" >1</td><td class="right " data-stat="rank_off_pass_att" >24</td><td class="right " data-stat="rank_off_pass_yds" >29</td><td class="right " data-stat="rank_off_pass_td" >29</td><td class="right " data-stat="rank_off_pass_int" >11</td><td class="right " data-stat="rank_off_pass_net_yds_per_att" >28</td><td class="right " data-stat="rank_def_yds" >29</td><td class="right " data-stat="rank_def_pts" >18</td><td class="right " data-stat="rank_def_turnovers" >31</td><td class="right " data-stat="rank_def_rush_att" >32</td><td class="right " data-stat="rank_def_rush_yds" >29</td><td class="right " data-stat="rank_def_rush_td" >31</td><td class="right " data-stat="rank_def_rush_yds_per_att" >12</td><td class="right " data-stat="rank_def_fumbles_rec" >30</td><td class="right " data-stat="rank_def_pass_att" >12</td><td class="right " data-stat="rank_def_pass_yds" >27</td><td class="right " data-stat="rank_def_pass_td" >7</td><td class="right " data-stat="rank_def_pass_int" >26</td><td class="right " data-stat="rank_def_pass_net_yds_per_att" >30</td></tr>
+</tbody><tfoot><tr ><th scope="row" class="left " data-stat="year_id" >2 yrs</th><td class="left iz" data-stat="team" ></td><td class="left iz" data-stat="coordinator_type" ></td><td class="right iz" data-stat="teams_in_league" ></td><td class="right " data-stat="rank_win_percentage" >31</td><td class="right " data-stat="rank_takeaway_giveaway" >45</td><td class="right " data-stat="rank_points_diff" >23</td><td class="right " data-stat="rank_yds_diff" >20</td><td class="right " data-stat="rank_off_yds" >17</td><td class="right " data-stat="rank_off_pts" >16</td><td class="right " data-stat="rank_off_turnovers" >80</td><td class="right " data-stat="rank_off_rush_att" >28</td><td class="right " data-stat="rank_off_rush_yds" >41</td><td class="right " data-stat="rank_off_rush_td" >33</td><td class="right " data-stat="rank_off_rush_yds_per_att" >45</td><td class="right " data-stat="rank_off_fumbles_lost" >92</td><td class="right " data-stat="rank_off_pass_att" >31</td><td class="right " data-stat="rank_off_pass_yds" >30</td><td class="right " data-stat="rank_off_pass_td" >20</td><td class="right " data-stat="rank_off_pass_int" >66</td><td class="right " data-stat="rank_off_pass_net_yds_per_att" >36</td><td class="right " data-stat="rank_def_yds" >38</td><td class="right " data-stat="rank_def_pts" >50</td><td class="right " data-stat="rank_def_turnovers" >16</td><td class="right " data-stat="rank_def_rush_att" >17</td><td class="right " data-stat="rank_def_rush_yds" >48</td><td class="right " data-stat="rank_def_rush_td" >42</td><td class="right " data-stat="rank_def_rush_yds_per_att" >81</td><td class="right " data-stat="rank_def_fumbles_rec" >11</td><td class="right " data-stat="rank_def_pass_att" >50</td><td class="right " data-stat="rank_def_pass_yds" >23</td><td class="right " data-stat="rank_def_pass_td" >59</td><td class="right " data-stat="rank_def_pass_int" >36</td><td class="right " data-stat="rank_def_pass_net_yds_per_att" >22</td></tr>
+
+   </tfoot>
+
+</table>
+
+
+</div>
+-->
+</div>
+<!-- fs_btf_1 -->
+<div class="adblock">
+<style>
+.fs-3aside {
+    float: left;
+    width: 30%!important;
+    min-width: 300px;
+}
+@media screen and (max-width:900px) {
+    .fs-3aside {
+        float: none;
+        margin: auto; 
+    } 
+}
+</style>
+<!-- Tag ID: BTF-1  3-Aside unit -->
+<div>
+<!-- Tag ID: pro-football-reference_300x250_BTF-1-1 -->
+<div align="center" class="fs-3aside" data-freestar-ad="__300x250 __300x250" id="pro-football-reference_300x250_BTF-1-1">
+<script data-cfasync="false" type="text/javascript">
+      freestar.config.enabled_slots.push({ placementName: "pro-football-reference_300x250_BTF-1-1", slotId: "pro-football-reference_300x250_BTF-1-1" });
+    </script>
+</div>
+<!-- Tag ID: pro-football-reference_300x250_BTF-1-2 -->
+<div align="center" class="fs-3aside no_mobile" data-freestar-ad="__300x250 __300x250" id="pro-football-reference_300x250_BTF-1-2">
+<script data-cfasync="false" type="text/javascript">
+      if (Modernizr.desktop) {
+        freestar.config.enabled_slots.push({ placementName: "pro-football-reference_300x250_BTF-1-2", slotId: "pro-football-reference_300x250_BTF-1-2" });
+      }
+    </script>
+</div>
+<!-- Tag ID: pro-football-reference_300x250_BTF-1-3 -->
+<div align="center" class="fs-3aside no_mobile" data-freestar-ad="__300x250 __300x250" id="pro-football-reference_300x250_BTF-1-3">
+<script data-cfasync="false" type="text/javascript">
+      if (Modernizr.desktop) {
+        freestar.config.enabled_slots.push({ placementName: "pro-football-reference_300x250_BTF-1-3", slotId: "pro-football-reference_300x250_BTF-1-3" });
+      }
+    </script>
+</div>
+</div>
+</div>
+<div class="table_wrapper setup_commented commented" id="all_coaching_history">
+<div class="section_heading assoc_coaching_history" id="coaching_history_sh">
+<span class="section_anchor" data-label="Full Coaching History" id="coaching_history_link"></span><h2>Full Coaching History</h2> <div class="section_heading_text">
+<ul>
+</ul>
+</div>
+</div><div class="placeholder"></div>
+<!--
+
+<div class="table_container" id="div_coaching_history">
+    
+    <table class="sortable stats_table" id="coaching_history" data-cols-to-freeze=",1">
+    <caption>Full Coaching History Table</caption>
+    
+
+   <colgroup><col><col><col><col><col></colgroup>
+   <thead>      
+      <tr>
+         <th aria-label="Year" data-stat="year_id" scope="col" class=" poptip sort_default_asc left" >Year</th>
+         <th aria-label="Age" data-stat="coach_age" scope="col" class=" poptip sort_default_asc center" data-tip="Coach's age on December 31st of that year" >Age</th>
+         <th aria-label="Level" data-stat="coach_level" scope="col" class=" poptip sort_default_asc show_partial_when_sorting center" data-tip="<b>NFL, college, high school, etc.</b>" >Level</th>
+         <th aria-label="Employer" data-stat="coach_employer" scope="col" class=" poptip sort_default_asc show_partial_when_sorting center" data-tip="<b>Where the individual was coaching during that season</b>" >Employer</th>
+         <th aria-label="Role" data-stat="coach_role" scope="col" class=" poptip sort_default_asc show_partial_when_sorting center" data-tip="<b>Title</b>" >Role</th>
+      </tr>
+      </thead>
+<tbody><tr ><th scope="row" class="left " data-stat="year_id" >1989</th><td class="right " data-stat="coach_age" >21</td><td class="left " data-stat="coach_level" csk="2" >College</td><td class="left " data-stat="coach_employer" >Catawba College</td><td class="left " data-stat="coach_role" >Assistant Coach/Strength & Conditioning</td></tr>
+<tr ><th scope="row" class="left " data-stat="year_id" >1991</th><td class="right " data-stat="coach_age" >23</td><td class="left " data-stat="coach_level" csk="1" >High School</td><td class="left " data-stat="coach_employer" >Woodland Hills (Churchill PA)</td><td class="left " data-stat="coach_role" >Defensive Line</td></tr>
+<tr ><th scope="row" class="left " data-stat="year_id" >1992</th><td class="right " data-stat="coach_age" >24</td><td class="left " data-stat="coach_level" csk="2" >College</td><td class="left " data-stat="coach_employer" >Charleston Southern</td><td class="left " data-stat="coach_role" >Defensive Line</td></tr>
+<tr ><th scope="row" class="left " data-stat="year_id" >1993</th><td class="right " data-stat="coach_age" >25</td><td class="left " data-stat="coach_level" csk="2" >College</td><td class="left " data-stat="coach_employer" >Charleston Southern</td><td class="left " data-stat="coach_role" >Defensive Line</td></tr>
+<tr ><th scope="row" class="left " data-stat="year_id" >1994</th><td class="right " data-stat="coach_age" >26</td><td class="left " data-stat="coach_level" csk="2" >College</td><td class="left " data-stat="coach_employer" >Charleston Southern</td><td class="left " data-stat="coach_role" >Defensive Line</td></tr>
+<tr ><th scope="row" class="left " data-stat="year_id" >1995</th><td class="right " data-stat="coach_age" >27</td><td class="left " data-stat="coach_level" csk="2" >College</td><td class="left " data-stat="coach_employer" >Charleston Southern</td><td class="left " data-stat="coach_role" >Defensive Line</td></tr>
+<tr ><th scope="row" class="left " data-stat="year_id" >1996</th><td class="right " data-stat="coach_age" >28</td><td class="left " data-stat="coach_level" csk="2" >College</td><td class="left " data-stat="coach_employer" >Charleston Southern</td><td class="left " data-stat="coach_role" >Defensive Line</td></tr>
+<tr ><th scope="row" class="left " data-stat="year_id" >1997</th><td class="right " data-stat="coach_age" >29</td><td class="left " data-stat="coach_level" csk="2" >College</td><td class="left " data-stat="coach_employer" >Catawba College</td><td class="left " data-stat="coach_role" >Defensive Line</td></tr>
+<tr ><th scope="row" class="left " data-stat="year_id" >1998</th><td class="right " data-stat="coach_age" >30</td><td class="left " data-stat="coach_level" csk="3" >NFL Europe</td><td class="left " data-stat="coach_employer" >England Monarchs</td><td class="left " data-stat="coach_role" >Defensive Line</td></tr>
+<tr ><th scope="row" class="left " data-stat="year_id" >1999</th><td class="right " data-stat="coach_age" >31</td><td class="left " data-stat="coach_level" csk="3" >NFL Europe</td><td class="left " data-stat="coach_employer" >Scottish Claymores</td><td class="left " data-stat="coach_role" >Defensive Line</td></tr>
+<tr ><th scope="row" class="left " data-stat="year_id" >2000</th><td class="right " data-stat="coach_age" >32</td><td class="left " data-stat="coach_level" csk="3" >NFL Europe</td><td class="left " data-stat="coach_employer" >Scottish Claymores</td><td class="left " data-stat="coach_role" >Defensive Line</td></tr>
+<tr ><th scope="row" class="left " data-stat="year_id" >2001</th><td class="right " data-stat="coach_age" >33</td><td class="left " data-stat="coach_level" csk="3" >NFL Europe</td><td class="left " data-stat="coach_employer" >Scottish Claymores</td><td class="left " data-stat="coach_role" >Defensive Line</td></tr>
+<tr ><th scope="row" class="left " data-stat="year_id" >2002</th><td class="right " data-stat="coach_age" >34</td><td class="left " data-stat="coach_level" csk="3" >NFL Europe</td><td class="left " data-stat="coach_employer" >Scottish Claymores</td><td class="left " data-stat="coach_role" >Defensive Line</td></tr>
+<tr ><th scope="row" class="left " data-stat="year_id" >2003</th><td class="right " data-stat="coach_age" >35</td><td class="left " data-stat="coach_level" csk="3" >NFL Europe</td><td class="left " data-stat="coach_employer" >Scottish Claymores</td><td class="left " data-stat="coach_role" >Defensive Line</td></tr>
+<tr ><th scope="row" class="left " data-stat="year_id" >2004</th><td class="right " data-stat="coach_age" >36</td><td class="left " data-stat="coach_level" csk="3" >NFL Europe</td><td class="left " data-stat="coach_employer" >Berlin Thunder</td><td class="left " data-stat="coach_role" >Defensive Coordinator</td></tr>
+<tr ><th scope="row" class="left " data-stat="year_id" >2005</th><td class="right " data-stat="coach_age" >37</td><td class="left " data-stat="coach_level" csk="3" >NFL Europe</td><td class="left " data-stat="coach_employer" >Berlin Thunder</td><td class="left " data-stat="coach_role" >Defensive Coordinator</td></tr>
+<tr ><th scope="row" class="left " data-stat="year_id" >2006</th><td class="right " data-stat="coach_age" >38</td><td class="left " data-stat="coach_level" csk="3" >NFL Europe</td><td class="left " data-stat="coach_employer" >Rhein Fire</td><td class="left " data-stat="coach_role" >Head Coach</td></tr>
+<tr ><th scope="row" class="left " data-stat="year_id" >2007</th><td class="right " data-stat="coach_age" >39</td><td class="left " data-stat="coach_level" csk="10" >NFL</td><td class="left " data-stat="coach_employer" ><a href="/teams/sfo/2007.htm">San Francisco 49ers</a></td><td class="left " data-stat="coach_role" >Defensive Line</td></tr>
+<tr ><th scope="row" class="left " data-stat="year_id" >2008</th><td class="right " data-stat="coach_age" >40</td><td class="left " data-stat="coach_level" csk="10" >NFL</td><td class="left " data-stat="coach_employer" ><a href="/teams/sfo/2008.htm">San Francisco 49ers</a></td><td class="left " data-stat="coach_role" >Defensive Line</td></tr>
+<tr ><th scope="row" class="left " data-stat="year_id" >2009</th><td class="right " data-stat="coach_age" >41</td><td class="left " data-stat="coach_level" csk="10" >NFL</td><td class="left " data-stat="coach_employer" ><a href="/teams/sfo/2009.htm">San Francisco 49ers</a></td><td class="left " data-stat="coach_role" >Defensive Line</td></tr>
+<tr ><th scope="row" class="left " data-stat="year_id" >2010</th><td class="right " data-stat="coach_age" >42</td><td class="left " data-stat="coach_level" csk="10" >NFL</td><td class="left " data-stat="coach_employer" ><a href="/teams/sfo/2010.htm">San Francisco 49ers</a></td><td class="left " data-stat="coach_role" >Defensive Line</td></tr>
+<tr ><th scope="row" class="left " data-stat="year_id" >2010</th><td class="right " data-stat="coach_age" >42</td><td class="left " data-stat="coach_level" csk="10" >NFL</td><td class="left " data-stat="coach_employer" ><a href="/teams/sfo/2010.htm">San Francisco 49ers</a></td><td class="left " data-stat="coach_role" >Defensive Line/Interim HC</td></tr>
+<tr ><th scope="row" class="left " data-stat="year_id" >2011</th><td class="right " data-stat="coach_age" >43</td><td class="left " data-stat="coach_level" csk="10" >NFL</td><td class="left " data-stat="coach_employer" ><a href="/teams/sfo/2011.htm">San Francisco 49ers</a></td><td class="left " data-stat="coach_role" >Defensive Line</td></tr>
+<tr ><th scope="row" class="left " data-stat="year_id" >2012</th><td class="right " data-stat="coach_age" >44</td><td class="left " data-stat="coach_level" csk="10" >NFL</td><td class="left " data-stat="coach_employer" ><a href="/teams/sfo/2012.htm">San Francisco 49ers</a></td><td class="left " data-stat="coach_role" >Defensive Line</td></tr>
+<tr ><th scope="row" class="left " data-stat="year_id" >2013</th><td class="right " data-stat="coach_age" >45</td><td class="left " data-stat="coach_level" csk="10" >NFL</td><td class="left " data-stat="coach_employer" ><a href="/teams/sfo/2013.htm">San Francisco 49ers</a></td><td class="left " data-stat="coach_role" >Defensive Line</td></tr>
+<tr ><th scope="row" class="left " data-stat="year_id" >2014</th><td class="right " data-stat="coach_age" >46</td><td class="left " data-stat="coach_level" csk="10" >NFL</td><td class="left " data-stat="coach_employer" ><a href="/teams/sfo/2014.htm">San Francisco 49ers</a></td><td class="left " data-stat="coach_role" >Defensive Line</td></tr>
+<tr ><th scope="row" class="left " data-stat="year_id" >2015</th><td class="right " data-stat="coach_age" >47</td><td class="left " data-stat="coach_level" csk="10" >NFL</td><td class="left " data-stat="coach_employer" ><a href="/teams/sfo/2015.htm">San Francisco 49ers</a></td><td class="left " data-stat="coach_role" >Head Coach</td></tr>
+<tr ><th scope="row" class="left " data-stat="year_id" >2017</th><td class="right " data-stat="coach_age" >49</td><td class="left " data-stat="coach_level" csk="10" >NFL</td><td class="left " data-stat="coach_employer" ><a href="/teams/was/2017.htm">Washington Redskins</a></td><td class="left " data-stat="coach_role" >Defensive Line</td></tr>
+<tr ><th scope="row" class="left " data-stat="year_id" >2018</th><td class="right " data-stat="coach_age" >50</td><td class="left " data-stat="coach_level" csk="10" >NFL</td><td class="left " data-stat="coach_employer" ><a href="/teams/was/2018.htm">Washington Redskins</a></td><td class="left " data-stat="coach_role" >Defensive Line</td></tr>
+<tr ><th scope="row" class="left " data-stat="year_id" >2019</th><td class="right " data-stat="coach_age" >51</td><td class="left " data-stat="coach_level" csk="10" >NFL</td><td class="left " data-stat="coach_employer" ><a href="/teams/was/2019.htm">Washington Redskins</a></td><td class="left " data-stat="coach_role" >Defensive Line</td></tr>
+<tr ><th scope="row" class="left " data-stat="year_id" >2020</th><td class="right " data-stat="coach_age" >52</td><td class="left " data-stat="coach_level" csk="10" >NFL</td><td class="left " data-stat="coach_employer" ><a href="/teams/dal/2020.htm">Dallas Cowboys</a></td><td class="left " data-stat="coach_role" >Defensive Line</td></tr>
+<tr ><th scope="row" class="left " data-stat="year_id" >2022</th><td class="right " data-stat="coach_age" >54</td><td class="left " data-stat="coach_level" csk="3" >ELF</td><td class="left " data-stat="coach_employer" >Rhein Fire</td><td class="left " data-stat="coach_role" >Head Coach</td></tr>
+<tr ><th scope="row" class="left " data-stat="year_id" >2023</th><td class="right " data-stat="coach_age" >55</td><td class="left " data-stat="coach_level" csk="3" >ELF</td><td class="left " data-stat="coach_employer" >Rhein Fire</td><td class="left " data-stat="coach_role" >Head Coach</td></tr>
+
+</table>
+
+
+</div>
+-->
+</div>
+<div class="table_wrapper setup_long long setup_commented commented" id="all_challenge_results">
+<div class="section_heading assoc_challenge_results" id="challenge_results_sh">
+<span class="section_anchor" data-label="2015 Challenges" id="challenge_results_link"></span><h2>2015 Challenges</h2> <div class="section_heading_text">
+<ul>
+</ul>
+</div>
+</div><div class="placeholder"></div>
+<!--
+
+<div class="table_container" id="div_challenge_results">
+    
+    <table class="sortable stats_table" id="challenge_results" data-cols-to-freeze=",1">
+    <caption>2015 Challenges Table</caption>
+    
+
+   <colgroup><col><col><col><col><col><col></colgroup>
+   <thead>      
+      <tr>
+         <th aria-label="Date" data-stat="game_date" scope="col" class=" poptip sort_default_asc center" >Date</th>
+         <th aria-label="Down" data-stat="down" scope="col" class=" poptip center" >Down</th>
+         <th aria-label="ToGo" data-stat="yds_to_go" scope="col" class=" poptip center" >ToGo</th>
+         <th aria-label="Location" data-stat="location" scope="col" class=" poptip left" data-tip="Play location" >Location</th>
+         <th aria-label=" " data-stat="challenge_ruling" scope="col" class=" poptip center" ></th>
+         <th aria-label="Detail" data-stat="detail" scope="col" class=" poptip left" data-tip="Play description" >Detail</th>
+      </tr>
+      </thead>
+<tbody><tr class=" penalty" ><th scope="row" class="left " data-stat="game_date" ><a href="/boxscores/201512270det.htm">2015-12-27</a></th><td class="center " data-stat="down" >2</td><td class="center " data-stat="yds_to_go" >19</td><td class="left " data-stat="location" >2-19 SFO 23</td><td class="right " data-stat="challenge_ruling" >O</td><td class="left " data-stat="detail" ><a name="pbp_"></a><a href="/players/S/StafMa00.htm">Matthew Stafford</a> pass incomplete deep middle intended for <a href="/players/J/JohnCa00.htm">Calvin Johnson</a> (defended by <a href="/players/B/BrocTr00.htm">Tramaine Brock</a>)</td></tr>
+<tr ><th scope="row" class="left iz" data-stat="game_date" ></th><td class="center iz" data-stat="down" ></td><td class="center iz" data-stat="yds_to_go" ></td><td class="left iz" data-stat="location" ></td><td class="right iz" data-stat="challenge_ruling" ></td><td class="left " data-stat="detail" ><a href="/teams/sfo/2015.htm">SFO</a> challenged the pass completion ruling, and the play was overturned. </td></tr>
+<tr ><th scope="row" class="left " data-stat="game_date" ><a href="/boxscores/201512200sfo.htm">2015-12-20</a></th><td class="center " data-stat="down" >1</td><td class="center " data-stat="yds_to_go" >10</td><td class="left " data-stat="location" >1-10 SFO 36</td><td class="right " data-stat="challenge_ruling" >U</td><td class="left " data-stat="detail" ><a name="pbp_"></a><a href="/players/M/McCaA.00.htm">A.J. McCarron</a> pass complete deep left to <a href="/players/J/JoneMa02.htm">Marvin Jones</a> for 19 yards (tackle by <a href="/players/R/ReidEr00.htm">Eric Reid</a>)</td></tr>
+<tr ><th scope="row" class="left iz" data-stat="game_date" ></th><td class="center iz" data-stat="down" ></td><td class="center iz" data-stat="yds_to_go" ></td><td class="left iz" data-stat="location" ></td><td class="right iz" data-stat="challenge_ruling" ></td><td class="left " data-stat="detail" ><a href="/teams/sfo/2015.htm">SFO</a> challenged the pass completion ruling, and the play was upheld. </td></tr>
+<tr class=" penalty" ><th scope="row" class="left " data-stat="game_date" ><a href="/boxscores/201512200sfo.htm">2015-12-20</a></th><td class="center iz" data-stat="down" ></td><td class="center iz" data-stat="yds_to_go" ></td><td class="left " data-stat="location" >SFO 35</td><td class="right " data-stat="challenge_ruling" >O</td><td class="left " data-stat="detail" ><a name="pbp_"></a><a href="/players/D/dawsophi01.htm">Phil Dawson</a> kicks onside 10 yards, recovered by <a href="/players/B/BellNi01.htm">Nick Bellore</a> (onside kick successful)</td></tr>
+<tr ><th scope="row" class="left iz" data-stat="game_date" ></th><td class="center iz" data-stat="down" ></td><td class="center iz" data-stat="yds_to_go" ></td><td class="left iz" data-stat="location" ></td><td class="right iz" data-stat="challenge_ruling" ></td><td class="left " data-stat="detail" ><a href="/teams/sfo/2015.htm">SFO</a> challenged the loose ball recovery ruling, and the play was overturned. </td></tr>
+<tr ><th scope="row" class="left " data-stat="game_date" ><a href="/boxscores/201512060chi.htm">2015-12-06</a></th><td class="center " data-stat="down" >4</td><td class="center " data-stat="yds_to_go" >8</td><td class="left " data-stat="location" >4-8 CHI 38</td><td class="right " data-stat="challenge_ruling" >U</td><td class="left " data-stat="detail" ><a name="pbp_"></a><a href="/players/P/PiniBr00.htm">Bradley Pinion</a> punts 38 yards, touchback</td></tr>
+<tr ><th scope="row" class="left iz" data-stat="game_date" ></th><td class="center iz" data-stat="down" ></td><td class="center iz" data-stat="yds_to_go" ></td><td class="left iz" data-stat="location" ></td><td class="right iz" data-stat="challenge_ruling" ></td><td class="left " data-stat="detail" ><a href="/teams/sfo/2015.htm">SFO</a> challenged the touchback ruling, and the play was upheld. </td></tr>
+<tr ><th scope="row" class="left " data-stat="game_date" ><a href="/boxscores/201511220sea.htm">2015-11-22</a></th><td class="center " data-stat="down" >3</td><td class="center " data-stat="yds_to_go" >9</td><td class="left " data-stat="location" >3-9 SEA 41</td><td class="right " data-stat="challenge_ruling" >U</td><td class="left " data-stat="detail" ><a name="pbp_"></a><a href="/players/W/WilsRu00.htm">Russell Wilson</a> pass complete short right to <a href="/players/W/WillLu00.htm">Luke Willson</a> for 10 yards (tackle by <a href="/players/W/WardJi01.htm">Jimmie Ward</a>)</td></tr>
+<tr ><th scope="row" class="left iz" data-stat="game_date" ></th><td class="center iz" data-stat="down" ></td><td class="center iz" data-stat="yds_to_go" ></td><td class="left iz" data-stat="location" ></td><td class="right iz" data-stat="challenge_ruling" ></td><td class="left " data-stat="detail" ><a href="/teams/sfo/2015.htm">SFO</a> challenged the runner was down by contact ruling, and the play was upheld. </td></tr>
+<tr ><th scope="row" class="left " data-stat="game_date" ><a href="/boxscores/201511080sfo.htm">2015-11-08</a></th><td class="center " data-stat="down" >2</td><td class="center " data-stat="yds_to_go" >10</td><td class="left " data-stat="location" >2-10 ATL 10</td><td class="right " data-stat="challenge_ruling" >U</td><td class="left " data-stat="detail" ><a name="pbp_"></a><a href="/players/G/GabbBl00.htm">Blaine Gabbert</a> left end for 9 yards (tackle by <a href="/players/W/WorrPa00.htm">Paul Worrilow</a>)</td></tr>
+<tr ><th scope="row" class="left iz" data-stat="game_date" ></th><td class="center iz" data-stat="down" ></td><td class="center iz" data-stat="yds_to_go" ></td><td class="left iz" data-stat="location" ></td><td class="right iz" data-stat="challenge_ruling" ></td><td class="left " data-stat="detail" ><a href="/teams/sfo/2015.htm">SFO</a> challenged the runner broke the plane ruling, and the play was upheld. </td></tr>
+<tr ><th scope="row" class="left " data-stat="game_date" ><a href="/boxscores/201509200pit.htm">2015-09-20</a></th><td class="center " data-stat="down" >3</td><td class="center " data-stat="yds_to_go" >10</td><td class="left " data-stat="location" >3-10 PIT 20</td><td class="right " data-stat="challenge_ruling" >U</td><td class="left " data-stat="detail" ><a name="pbp_"></a><a href="/players/R/RoetBe00.htm">Ben Roethlisberger</a> pass complete deep left to <a href="/players/B/BrowAn04.htm">Antonio Brown</a> for 28 yards (tackle by <a href="/players/R/ReidEr00.htm">Eric Reid</a>)</td></tr>
+<tr ><th scope="row" class="left iz" data-stat="game_date" ></th><td class="center iz" data-stat="down" ></td><td class="center iz" data-stat="yds_to_go" ></td><td class="left iz" data-stat="location" ></td><td class="right iz" data-stat="challenge_ruling" ></td><td class="left " data-stat="detail" ><a href="/teams/sfo/2015.htm">SFO</a> challenged the pass completion ruling, and the play was upheld. </td></tr>
+<tr ><th scope="row" class="left " data-stat="game_date" ><a href="/boxscores/201509200pit.htm">2015-09-20</a></th><td class="center " data-stat="down" >4</td><td class="center " data-stat="yds_to_go" >1</td><td class="left " data-stat="location" >4-1 PIT 1</td><td class="right " data-stat="challenge_ruling" >U</td><td class="left " data-stat="detail" ><a name="pbp_"></a><a href="/players/K/KaepCo00.htm">Colin Kaepernick</a> pass incomplete short right intended for <a href="/players/M/MillBr02.htm">Bruce Miller</a> (defended by <a href="/players/T/TimmLa99.htm">Lawrence Timmons</a>)</td></tr>
+<tr ><th scope="row" class="left iz" data-stat="game_date" ></th><td class="center iz" data-stat="down" ></td><td class="center iz" data-stat="yds_to_go" ></td><td class="left iz" data-stat="location" ></td><td class="right iz" data-stat="challenge_ruling" ></td><td class="left " data-stat="detail" ><a href="/teams/sfo/2015.htm">SFO</a> challenged the incomplete pass ruling, and the play was upheld. </td></tr>
+</tbody><tfoot><tr class="onecell" ><td class="left " data-stat="onecell" colspan="6" >2015 Challenges: 8 Overturned: 2 Upheld: 6</td></tr>
+
+   </tfoot>
+
+</table>
+
+
+</div>
+<div class="footer no_hide_long" id="tfooter_challenge_results">
+
+<a href="/coaches/TomsJi0/challenges/">See all career challenges</a></div>-->
+<div class="placeholder"></div>
+</div>
+<div class="table_wrapper setup_commented commented" id="all_worked_for">
+<div class="section_heading assoc_worked_for" id="worked_for_sh">
+<span class="section_anchor" data-label="Worked For" id="worked_for_link"></span><h2>Worked For</h2> <div class="section_heading_text">
+<ul>
+</ul>
+</div>
+</div><div class="placeholder"></div>
+<!--
+
+<div class="table_container" id="div_worked_for">
+    
+    <table class="sortable stats_table" id="worked_for" data-cols-to-freeze=",1">
+    <caption>Worked For Table</caption>
+    
+
+   <colgroup><col><col></colgroup>
+   <thead>      
+      <tr>
+         <th aria-label="Name" data-stat="coach_name" scope="col" class=" poptip center" >Name</th>
+         <th aria-label="Role" data-stat="roles" scope="col" class=" poptip center" >Role</th>
+      </tr>
+      </thead>
+<tbody><tr ><th scope="row" class="right " data-stat="coach_name" ><a href="/coaches/GrudJa0.htm">Jay Gruden</a></th><td class="right " data-stat="roles" >Defensive Line</td></tr>
+<tr ><th scope="row" class="right " data-stat="coach_name" ><a href="/coaches/HarbJi0.htm">Jim Harbaugh</a></th><td class="right " data-stat="roles" >Defensive Line</td></tr>
+<tr ><th scope="row" class="right " data-stat="coach_name" ><a href="/coaches/McCaMi0.htm">Mike McCarthy</a></th><td class="right " data-stat="roles" >Defensive Line</td></tr>
+<tr ><th scope="row" class="right " data-stat="coach_name" ><a href="/coaches/NolaMi0.htm">Mike Nolan</a></th><td class="right " data-stat="roles" >Defensive Line</td></tr>
+<tr ><th scope="row" class="right " data-stat="coach_name" ><a href="/coaches/SingMi0.htm">Mike Singletary</a></th><td class="right " data-stat="roles" >Defensive Line, Defensive Line/Interim HC</td></tr>
+
+</table>
+
+
+</div>
+-->
+</div>
+<div class="table_wrapper setup_commented commented" id="all_employed">
+<div class="section_heading assoc_employed" id="employed_sh">
+<span class="section_anchor" data-label="Employed" id="employed_link"></span><h2>Employed</h2> <div class="section_heading_text">
+<ul>
+</ul>
+</div>
+</div><div class="placeholder"></div>
+<!--
+
+<div class="table_container" id="div_employed">
+    
+    <table class="sortable stats_table" id="employed" data-cols-to-freeze=",1">
+    <caption>Employed Table</caption>
+    
+
+   <colgroup><col><col></colgroup>
+   <thead>      
+      <tr>
+         <th aria-label="Name" data-stat="coach_name" scope="col" class=" poptip center" >Name</th>
+         <th aria-label="Role" data-stat="roles" scope="col" class=" poptip center" >Role</th>
+      </tr>
+      </thead>
+<tbody><tr ><th scope="row" class="right " data-stat="coach_name" ><a href="/coaches/JoseVa0.htm">Vance Joseph</a></th><td class="right " data-stat="roles" >Defensive Backs</td></tr>
+<tr ><th scope="row" class="right " data-stat="coach_name" ><a href="/coaches/MangEr0.htm">Eric Mangini</a></th><td class="right " data-stat="roles" >Defensive Coordinator</td></tr>
+<tr ><th scope="row" class="right " data-stat="coach_name" ><a href="/coaches/SparTo0.htm">Tony Sparano</a></th><td class="right " data-stat="roles" >Tight Ends</td></tr>
+
+</table>
+
+
+</div>
+-->
+</div>
+<!-- global.nonempty_tables_num: 5, table_count: 5 -->
+<!-- no Local/Partials/NoteBottom.tt2 -->
+<div class="section_wrapper" id="bottom_nav">
+<p><a href="/coaches/">Coaches Main Page</a></p></div>
+<!-- fs_footer -->
+<div class="adblock">
+<!-- div#fs_fs_footer  -->
+<div align="center" data-freestar-ad="__300x250 __970x90" id="div-gpt-ad-728x90-Footer">
+<script data-cfasync="false" type="text/javascript">
+    if (sr_detect_ie || sr_detect_edge || Modernizr.adfree) {
+    }
+    else {
+        console.log('push ad:div-gpt-ad-728x90-Footer');
+        freestar.config.enabled_slots.push({ placementName: "div-gpt-ad-728x90-Footer", slotId: "div-gpt-ad-728x90-Footer" });
+    }
+  </script>
+</div>
+<!-- /div.#fs_fs_footer -->
+</div>
+</div>
