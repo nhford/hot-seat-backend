@@ -1,0 +1,37 @@
+name: Export Wins Pool Notebooks
+
+on:
+  schedule:
+    - cron: "0 0 * * *" # Runs at midnight every night
+  workflow_dispatch: # Allows manual triggering
+
+jobs:
+  run-notebooks:
+    runs-on: ubuntu-latest
+
+    env:
+      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      SUPABASE_SERVICE_ROLE: ${{ secrets.SUPABASE_SERVICE_ROLE }}
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set Up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: Install Dependencies
+        run: |
+          pip install pandas supabase python-dotenv requests beautifulsoup4 json5 notebook nbconvert papermill lxml
+
+      - name: Run Export Notebook
+        run: |
+          papermill refresh refresh/refresh_db.ipynb
+
+      - name: Commit and Push Changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        continue-on-error: true # Prevent failure if no changes
