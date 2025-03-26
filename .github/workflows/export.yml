@@ -1,4 +1,4 @@
-name: Export Wins Pool Notebooks
+name: Refresh database
 
 on:
   schedule:
@@ -24,7 +24,7 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          pip install pandas supabase python-dotenv requests beautifulsoup4 json5 notebook nbconvert papermill lxml
+          pip install pandas supabase python-dotenv requests notebook nbconvert papermill lxml
 
       - name: Run Export Notebook
         run: |
