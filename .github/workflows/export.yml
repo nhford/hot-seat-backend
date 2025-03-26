@@ -28,7 +28,7 @@ jobs:
 
       - name: Run Export Notebook
         run: |
-          papermill refresh refresh/refresh_db.ipynb
+          papermill refresh_db.ipynb refresh/refresh_db.ipynb
 
       - name: Commit and Push Changes
         run: |
