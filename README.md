@@ -4,7 +4,7 @@ Backend for [Hot Seat](https://hot-seat.netlify.app) — a model and data pipeli
 
 LightGBM scores each coach-season. Results are published to Supabase for the frontend and exposed through a FastAPI predict service for What-If scenarios.
 
-**Related repo:** [Hot-Seat](https://github.com/NFordUMass/Hot-Seat) (Netlify frontend)
+**Related repo:** [hot-seat](https://github.com/nhford/hot-seat) (Netlify frontend) · [hot-seat-backend](https://github.com/nhford/hot-seat-backend) (this repo)
 
 ## Architecture
 
@@ -36,7 +36,7 @@ flowchart LR
   lgb --> export
   export --> SB
   lgb --> API
-  API --> FE[Hot-Seat frontend]
+  API --> FE[hot-seat frontend]
   SB --> FE
 ```
 
