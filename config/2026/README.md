@@ -1,10 +1,22 @@
-# Copy from config/2025/ and edit when rolling to the 2026 prediction season.
-# Required files in this folder:
-#   firings.yaml    — coaches fired after 2025 (label HISTORY_END)
-#   hires.yaml      — new head coaches + ages
-#   sb_futures.csv  — Super Bowl futures odds by team
-#   wins_exp.csv    — expected win totals (rank-aligned with futures)
-#
-# Then bump config/settings.yaml:
-#   season: 2026
-#   history_end: 2025
+# Season config template
+
+Copy this folder when rolling to a new prediction season (e.g. `config/2027/`).
+
+Required files:
+
+| File | Purpose |
+|------|---------|
+| `firings.yaml` | Coaches fired after the completed season (`history_end`) |
+| `hires.yaml` | New head coaches (team abbrev → PFR id) + ages for first-time HCs |
+| `sb_futures.csv` | Super Bowl futures odds by team |
+| `wins_exp.csv` | Expected win totals (rank-aligned with futures) |
+
+Then update `config/settings.yaml`:
+
+```yaml
+season: 2027        # upcoming / in-progress NFL year
+history_end: 2026   # last completed season with full stats
+games: 17
+```
+
+Run `python -m src.scrape all --fetch`, then `python -m src.score` and `python -m src.export`.

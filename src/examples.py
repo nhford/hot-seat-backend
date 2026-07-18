@@ -7,7 +7,7 @@ sequence form for a future sequence model.
 Usage (from repo root):
 
     python -m src.examples
-    python -m src.examples --k 12 --out-flat model/examples_flat.csv
+    python -m src.examples --k 12 --jsonl --out-flat model/examples_flat.csv
 """
 
 from __future__ import annotations
@@ -628,19 +628,19 @@ def build_parser() -> argparse.ArgumentParser:
         "--out-jsonl",
         type=Path,
         default=ROOT / "model" / "examples.jsonl",
-        help="Variable-length sequence JSONL path",
+        help="Variable-length sequence JSONL path (only written with --jsonl)",
     )
     p.add_argument(
-        "--no-jsonl",
+        "--jsonl",
         action="store_true",
-        help="Skip writing the sequence JSONL",
+        help="Also write variable-length sequence JSONL",
     )
     return p
 
 
 def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
-    out_jsonl = None if args.no_jsonl else args.out_jsonl
+    out_jsonl = args.out_jsonl if args.jsonl else None
     flat = build_and_write(k=args.k, out_flat=args.out_flat, out_jsonl=out_jsonl)
     n = len(flat)
     n_pos = int(flat["fired"].sum())

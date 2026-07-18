@@ -1,7 +1,8 @@
-"""Build classic RF training table (`model/training.csv`).
+"""Build display-feature training table (`model/training.csv`).
 
-Omits the `gm` feature (owner is kept). Rebuilds coach seasons, odds, and
-playoff pivots through `history_end` before writing the table.
+Used by `src.score` for export columns (prob comes from LightGBM separately).
+Omits the `gm` feature at build time (added in score). Rebuilds coach seasons,
+odds, and playoff pivots through `history_end` before writing the table.
 
 Usage (from repo root):
 

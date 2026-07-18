@@ -30,7 +30,7 @@ DEFAULT_EXPORT = ROOT / "data" / "export.csv"
 DEFAULT_ENV = ROOT / ".env"
 TABLE = "coach_year_v2"
 # Matches PRIMARY KEY in supabase/coach_year_v2.sql
-ON_CONFLICT = "id,year,tm"
+ON_CONFLICT = "id,year,team"
 # PostgREST / gateway payloads blow up if the whole CSV goes in one request.
 DEFAULT_CHUNK_SIZE = 200
 SCHEMA_SQL = ROOT / "supabase" / "coach_year_v2.sql"
