@@ -1,0 +1,19 @@
+# New head coaches for the prediction season (team abbrev -> PFR coach id).
+# Ages are required for coaches without a prior row in the feature dataset.
+teams:
+  NOR: MoorKe0
+  CHI: JohnBe0
+  NWE: VrabMi0
+  DAL: SchoBr0
+  JAX: CoenLi0
+  RAI: CarrPe0
+  NYJ: GlenAa0
+
+ages:
+  MoorKe0: 36
+  JohnBe0: 38
+  VrabMi0: 49
+  SchoBr0: 51
+  CoenLi0: 39
+  CarrPe0: 73
+  GlenAa0: 52

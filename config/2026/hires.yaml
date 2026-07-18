@@ -1,0 +1,25 @@
+# New head coaches for the prediction season (team abbrev -> PFR coach id).
+# Ages are required for coaches without a prior row in the feature dataset.
+teams:
+  CRD: LaFlMi0
+  ATL: StefKe0
+  RAV: MintJe0
+  BUF: BradJo0
+  CLE: MonkTo0
+  RAI: KubiKl0
+  MIA: HaflJe0
+  NYG: HarbJo0
+  PIT: McCaMi0
+  OTI: SaleRo0
+
+ages:
+  LaFlMi0: 39
+  StefKe0: 44
+  MintJe0: 43
+  BradJo0: 37
+  MonkTo0: 60
+  KubiKl0: 39
+  HaflJe0: 47
+  HarbJo0: 64
+  McCaMi0: 63
+  SaleRo0: 47

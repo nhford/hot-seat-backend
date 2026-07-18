@@ -1,0 +1,97 @@
+{
+  "n_examples": 1620,
+  "n_fired": 348,
+  "n_features": 54,
+  "k": 5,
+  "folds": 5,
+  "final_n_estimators": 50,
+  "categorical_features": [
+    "playoff_round_t0",
+    "playoff_round_t1",
+    "playoff_round_t2",
+    "playoff_round_t3",
+    "playoff_round_t4",
+    "prehire_round_1",
+    "prehire_round_2",
+    "prehire_round_3"
+  ],
+  "cv": {
+    "roc_auc": 0.8096309549627703,
+    "avg_precision": 0.5469703056879203,
+    "folds": [
+      {
+        "fold": 1,
+        "n": 324,
+        "n_pos": 66,
+        "roc_auc": 0.8127789523138359,
+        "avg_precision": 0.5523683893176634,
+        "best_iteration": 33
+      },
+      {
+        "fold": 2,
+        "n": 324,
+        "n_pos": 73,
+        "roc_auc": 0.8118757845331004,
+        "avg_precision": 0.6022397677612457,
+        "best_iteration": 21
+      },
+      {
+        "fold": 3,
+        "n": 324,
+        "n_pos": 73,
+        "roc_auc": 0.8134039185722862,
+        "avg_precision": 0.5148838342613937,
+        "best_iteration": 32
+      },
+      {
+        "fold": 4,
+        "n": 324,
+        "n_pos": 72,
+        "roc_auc": 0.808752204585538,
+        "avg_precision": 0.647225275276425,
+        "best_iteration": 36
+      },
+      {
+        "fold": 5,
+        "n": 324,
+        "n_pos": 64,
+        "roc_auc": 0.8311899038461539,
+        "avg_precision": 0.601705728529164,
+        "best_iteration": 139
+      }
+    ],
+    "classification_report": {
+      "0": {
+        "precision": 0.8854589764419172,
+        "recall": 0.8569182389937107,
+        "f1-score": 0.87095485417499,
+        "support": 1272.0
+      },
+      "1": {
+        "precision": 0.532133676092545,
+        "recall": 0.5948275862068966,
+        "f1-score": 0.5617367706919946,
+        "support": 348.0
+      },
+      "accuracy": 0.8006172839506173,
+      "macro avg": {
+        "precision": 0.7087963262672311,
+        "recall": 0.7258729126003036,
+        "f1-score": 0.7163458124334923,
+        "support": 1620.0
+      },
+      "weighted avg": {
+        "precision": 0.809559467477978,
+        "recall": 0.8006172839506173,
+        "f1-score": 0.8045302288341984,
+        "support": 1620.0
+      }
+    }
+  },
+  "model_path": "model/lightgbm.pkl",
+  "oof_path": "model/lightgbm_oof.csv",
+  "flat_path": "model/examples_flat.csv",
+  "history_end": 2025,
+  "year_max": 2025,
+  "year_min": 1970
+}

@@ -1,0 +1,22 @@
+# Alternate team abbreviations → canonical PFR abbrevs used in this repo.
+# Used when sources (odds sites, etc.) use modern/common codes instead of PFR's.
+#
+# PFR uses historical franchise codes, e.g. HTX (Houston), OTI (Oilers/Titans),
+# CRD (Cardinals), RAV (Ravens), SDG (Chargers), RAI (Raiders), RAM (Rams), CLT (Colts).
+#
+# Year-ambiguous codes (BAL, HOU) are also listed here for *modern* sources.
+# Coach-season / playoff joins must use config/franchise_map.yaml (year-aware).
+
+HOU: HTX   # Houston Texans (modern); Oilers-era HOU → OTI via franchise_map
+TEN: OTI   # Tennessee Titans (Oilers franchise code)
+ARI: CRD   # Arizona Cardinals
+BAL: RAV   # Baltimore Ravens (modern); Colts-era BAL → CLT via franchise_map
+LAC: SDG   # Los Angeles Chargers
+LVR: RAI   # Las Vegas Raiders
+LAR: RAM   # Los Angeles Rams
+STL: RAM   # St. Louis Rams (same franchise)
+IND: CLT   # Indianapolis Colts
+DTX: KAN   # Dallas Texans → Chiefs
+OAK: RAI   # Oakland Raiders
+BOS: NWE   # Boston Patriots
+PHO: CRD   # Phoenix Cardinals

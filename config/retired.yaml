@@ -1,0 +1,29 @@
+# Coach-season labels that should NOT be treated as firings (retirements, etc.).
+# Format: "{coach_id}-{yy}" where yy is the 2-digit season year.
+#
+# check_fired() returns Fired=0 when the label is in this list.
+
+retired:
+  - HalaGe0-67
+  - LombVi0-67
+  - LombVi0-69
+  - BrowPa0-75
+  - MaddJo0-78
+  - GranBu0-83
+  - LandTo0-88
+  - ParcBi0-90
+  - NollCh0-91
+  - ShulDo0-95
+  - ParcBi0-96
+  - LevyMa0-97
+  - SchoMa0-98
+  - ParcBi0-99
+  - VermDi0-05
+  - CowhBi-06
+  - ParcBi0-06
+  - DungTo-08
+  - CougTo0-15
+  - KubiGa0-16
+  - AriaBr0-17
+  - AriaBr0-21
+  - PaytSe0-21

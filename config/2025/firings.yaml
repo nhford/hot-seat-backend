@@ -1,0 +1,10 @@
+# Coaches fired after (or during) history_end who should be labeled Fired=1
+# for that completed season. Format: "{coach_id}-{yy}" where yy is history_end % 100.
+fired:
+  - MayoJe0-24
+  - SaleRo0-24
+  - McCaMi0-24
+  - PierAn0-24
+  - PedeDo0-24
+  - EberMa0-24
+  - AlleDe0-24

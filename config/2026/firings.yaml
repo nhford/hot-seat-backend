@@ -1,0 +1,13 @@
+# Coaches fired after (or during) history_end who should be labeled Fired=1
+# for that completed season. Format: "{coach_id}-{yy}" where yy is history_end % 100.
+fired:
+  - McDeSe0-25
+  - McDaMi0-25
+  - HarbJo0-25
+  - StefKe0-25
+  - CarrPe0-25
+  - GannJo0-25
+  - MorrRa0-25
+  - DaboBr0-25
+  - CallBr0-25
+  - TomlMi0-25

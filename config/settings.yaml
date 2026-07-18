@@ -1,0 +1,6 @@
+# Active prediction season (the upcoming / in-progress NFL year).
+# When rolling forward: bump season, set history_end to the prior completed year,
+# and create config/<season>/ with firings, hires, sb_futures, and wins_exp.
+season: 2026
+history_end: 2025
+games: 17

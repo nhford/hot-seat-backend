@@ -1,0 +1,29 @@
+# Year-aware PFR franchise codes for coach-season / standings / playoff joins.
+#
+# Unambiguous aliases (IND→CLT, OAK→RAI, …) live in abbrev_aliases.yaml.
+# Codes that mean *different* franchises by era are listed here:
+#   before `since` → `legacy`, from `since` onward → `modern`.
+
+typos:
+  GBN: GNB
+  Indianapolis Colts: IND
+
+# Ambiguous coach/source abbrevs → lineage code used in data/derived pivots
+# and data/scraped/playoffs.csv.
+era_splits:
+  BAL:
+    since: 1996
+    legacy: CLT   # Baltimore Colts
+    modern: RAV   # Baltimore Ravens
+  HOU:
+    since: 2002
+    legacy: OTI   # Houston Oilers → Titans
+    modern: HTX   # Houston Texans
+
+# First NFL season for expansion / relocated rows in the 32-team pivots.
+# Lookups for years before this return missing (not a fake 0.0).
+franchise_start:
+  RAV: 1996
+  HTX: 2002
+  JAX: 1995
+  CAR: 1995

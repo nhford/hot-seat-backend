@@ -1,0 +1,47 @@
+{
+  "n_examples": 1620,
+  "n_fired": 348,
+  "k": 5,
+  "season_token_fields": [
+    "age",
+    "playoff_round",
+    "win_pct",
+    "w_plyf",
+    "coy_share",
+    "coy_rank",
+    "tenure_idx"
+  ],
+  "context_fields": [
+    "exp",
+    "tenure",
+    "poc",
+    "prior_hc_stops",
+    "prior_hc_seasons",
+    "prior_win_pct",
+    "prior_w_plyf",
+    "prior_sb_wins",
+    "prior_sb_apps",
+    "career_sb_wins",
+    "career_sb_apps",
+    "prior_coy_share",
+    "years_since_last_hc",
+    "prehire_win_pct_1",
+    "prehire_round_1",
+    "prehire_win_pct_2",
+    "prehire_round_2",
+    "prehire_win_pct_3",
+    "prehire_round_3"
+  ],
+  "categorical_features": [
+    "playoff_round_t0",
+    "playoff_round_t1",
+    "playoff_round_t2",
+    "playoff_round_t3",
+    "playoff_round_t4",
+    "prehire_round_1",
+    "prehire_round_2",
+    "prehire_round_3"
+  ],
+  "flat_path": "/Users/noahford/Desktop/python/coaches/model/examples_flat.csv",
+  "jsonl_path": null
+}

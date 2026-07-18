@@ -1,0 +1,635 @@
+Tm,Year,Team,Round
+CLT,1970,Baltimore Colts,5
+DAL,1970,Dallas Cowboys,4
+SFO,1970,San Francisco 49ers,3
+RAI,1970,Oakland Raiders,3
+MIN,1970,Minnesota Vikings,2
+MIA,1970,Miami Dolphins,2
+DET,1970,Detroit Lions,2
+CIN,1970,Cincinnati Bengals,2
+DAL,1971,Dallas Cowboys,5
+MIA,1971,Miami Dolphins,4
+CLT,1971,Baltimore Colts,3
+SFO,1971,San Francisco 49ers,3
+WAS,1971,Washington Redskins,2
+CLE,1971,Cleveland Browns,2
+KAN,1971,Kansas City Chiefs,2
+MIN,1971,Minnesota Vikings,2
+MIA,1972,Miami Dolphins,5
+WAS,1972,Washington Redskins,4
+DAL,1972,Dallas Cowboys,3
+PIT,1972,Pittsburgh Steelers,3
+GNB,1972,Green Bay Packers,2
+CLE,1972,Cleveland Browns,2
+RAI,1972,Oakland Raiders,2
+SFO,1972,San Francisco 49ers,2
+MIA,1973,Miami Dolphins,5
+MIN,1973,Minnesota Vikings,4
+DAL,1973,Dallas Cowboys,3
+RAI,1973,Oakland Raiders,3
+CIN,1973,Cincinnati Bengals,2
+RAM,1973,Los Angeles Rams,2
+PIT,1973,Pittsburgh Steelers,2
+WAS,1973,Washington Redskins,2
+PIT,1974,Pittsburgh Steelers,5
+MIN,1974,Minnesota Vikings,4
+RAI,1974,Oakland Raiders,3
+RAM,1974,Los Angeles Rams,3
+WAS,1974,Washington Redskins,2
+BUF,1974,Buffalo Bills,2
+MIA,1974,Miami Dolphins,2
+CRD,1974,St. Louis Cardinals,2
+PIT,1975,Pittsburgh Steelers,5
+DAL,1975,Dallas Cowboys,4
+RAI,1975,Oakland Raiders,3
+RAM,1975,Los Angeles Rams,3
+CIN,1975,Cincinnati Bengals,2
+MIN,1975,Minnesota Vikings,2
+CRD,1975,St. Louis Cardinals,2
+CLT,1975,Baltimore Colts,2
+RAI,1976,Oakland Raiders,5
+MIN,1976,Minnesota Vikings,4
+PIT,1976,Pittsburgh Steelers,3
+RAM,1976,Los Angeles Rams,3
+DAL,1976,Dallas Cowboys,2
+CLT,1976,Baltimore Colts,2
+NWE,1976,New England Patriots,2
+WAS,1976,Washington Redskins,2
+DAL,1977,Dallas Cowboys,5
+DEN,1977,Denver Broncos,4
+RAI,1977,Oakland Raiders,3
+MIN,1977,Minnesota Vikings,3
+RAM,1977,Los Angeles Rams,2
+CHI,1977,Chicago Bears,2
+CLT,1977,Baltimore Colts,2
+PIT,1977,Pittsburgh Steelers,2
+PIT,1978,Pittsburgh Steelers,5
+DAL,1978,Dallas Cowboys,4
+OTI,1978,Houston Oilers,3
+RAM,1978,Los Angeles Rams,3
+NWE,1978,New England Patriots,2
+MIN,1978,Minnesota Vikings,2
+DEN,1978,Denver Broncos,2
+ATL,1978,Atlanta Falcons,2
+MIA,1978,Miami Dolphins,1
+PHI,1978,Philadelphia Eagles,1
+PIT,1979,Pittsburgh Steelers,5
+RAM,1979,Los Angeles Rams,4
+TAM,1979,Tampa Bay Buccaneers,3
+OTI,1979,Houston Oilers,3
+DAL,1979,Dallas Cowboys,2
+MIA,1979,Miami Dolphins,2
+SDG,1979,San Diego Chargers,2
+PHI,1979,Philadelphia Eagles,2
+CHI,1979,Chicago Bears,1
+DEN,1979,Denver Broncos,1
+RAI,1980,Oakland Raiders,5
+PHI,1980,Philadelphia Eagles,4
+SDG,1980,San Diego Chargers,3
+DAL,1980,Dallas Cowboys,3
+CLE,1980,Cleveland Browns,2
+ATL,1980,Atlanta Falcons,2
+BUF,1980,Buffalo Bills,2
+MIN,1980,Minnesota Vikings,2
+OTI,1980,Houston Oilers,1
+RAM,1980,Los Angeles Rams,1
+SFO,1981,San Francisco 49ers,5
+CIN,1981,Cincinnati Bengals,4
+DAL,1981,Dallas Cowboys,3
+SDG,1981,San Diego Chargers,3
+NYG,1981,New York Giants,2
+BUF,1981,Buffalo Bills,2
+MIA,1981,Miami Dolphins,2
+TAM,1981,Tampa Bay Buccaneers,2
+PHI,1981,Philadelphia Eagles,1
+NYJ,1981,New York Jets,1
+WAS,1982,Washington Redskins,5
+MIA,1982,Miami Dolphins,4
+NYJ,1982,New York Jets,3
+DAL,1982,Dallas Cowboys,3
+SDG,1982,San Diego Chargers,2
+GNB,1982,Green Bay Packers,2
+MIN,1982,Minnesota Vikings,2
+RAI,1982,Los Angeles Raiders,2
+PIT,1982,Pittsburgh Steelers,1
+CIN,1982,Cincinnati Bengals,1
+ATL,1982,Atlanta Falcons,1
+TAM,1982,Tampa Bay Buccaneers,1
+DET,1982,Detroit Lions,1
+CLE,1982,Cleveland Browns,1
+NWE,1982,New England Patriots,1
+CRD,1982,St. Louis Cardinals,1
+RAI,1983,Los Angeles Raiders,5
+WAS,1983,Washington Redskins,4
+SFO,1983,San Francisco 49ers,3
+SEA,1983,Seattle Seahawks,3
+RAM,1983,Los Angeles Rams,2
+PIT,1983,Pittsburgh Steelers,2
+MIA,1983,Miami Dolphins,2
+DET,1983,Detroit Lions,2
+DAL,1983,Dallas Cowboys,1
+DEN,1983,Denver Broncos,1
+SFO,1984,San Francisco 49ers,5
+MIA,1984,Miami Dolphins,4
+CHI,1984,Chicago Bears,3
+PIT,1984,Pittsburgh Steelers,3
+DEN,1984,Denver Broncos,2
+WAS,1984,Washington Redskins,2
+NYG,1984,New York Giants,2
+SEA,1984,Seattle Seahawks,2
+RAM,1984,Los Angeles Rams,1
+RAI,1984,Los Angeles Raiders,1
+CHI,1985,Chicago Bears,5
+NWE,1985,New England Patriots,4
+MIA,1985,Miami Dolphins,3
+RAM,1985,Los Angeles Rams,3
+RAI,1985,Los Angeles Raiders,2
+NYG,1985,New York Giants,2
+DAL,1985,Dallas Cowboys,2
+CLE,1985,Cleveland Browns,2
+SFO,1985,San Francisco 49ers,1
+NYJ,1985,New York Jets,1
+NYG,1986,New York Giants,5
+DEN,1986,Denver Broncos,4
+WAS,1986,Washington Redskins,3
+CLE,1986,Cleveland Browns,3
+SFO,1986,San Francisco 49ers,2
+NWE,1986,New England Patriots,2
+CHI,1986,Chicago Bears,2
+NYJ,1986,New York Jets,2
+RAM,1986,Los Angeles Rams,1
+KAN,1986,Kansas City Chiefs,1
+WAS,1987,Washington Redskins,5
+DEN,1987,Denver Broncos,4
+MIN,1987,Minnesota Vikings,3
+CLE,1987,Cleveland Browns,3
+CHI,1987,Chicago Bears,2
+OTI,1987,Houston Oilers,2
+SFO,1987,San Francisco 49ers,2
+CLT,1987,Indianapolis Colts,2
+SEA,1987,Seattle Seahawks,1
+NOR,1987,New Orleans Saints,1
+SFO,1988,San Francisco 49ers,5
+CIN,1988,Cincinnati Bengals,4
+CHI,1988,Chicago Bears,3
+BUF,1988,Buffalo Bills,3
+MIN,1988,Minnesota Vikings,2
+OTI,1988,Houston Oilers,2
+SEA,1988,Seattle Seahawks,2
+PHI,1988,Philadelphia Eagles,2
+RAM,1988,Los Angeles Rams,1
+CLE,1988,Cleveland Browns,1
+SFO,1989,San Francisco 49ers,5
+DEN,1989,Denver Broncos,4
+RAM,1989,Los Angeles Rams,3
+CLE,1989,Cleveland Browns,3
+NYG,1989,New York Giants,2
+PIT,1989,Pittsburgh Steelers,2
+MIN,1989,Minnesota Vikings,2
+BUF,1989,Buffalo Bills,2
+PHI,1989,Philadelphia Eagles,1
+OTI,1989,Houston Oilers,1
+NYG,1990,New York Giants,5
+BUF,1990,Buffalo Bills,4
+SFO,1990,San Francisco 49ers,3
+RAI,1990,Los Angeles Raiders,3
+CIN,1990,Cincinnati Bengals,2
+CHI,1990,Chicago Bears,2
+WAS,1990,Washington Redskins,2
+MIA,1990,Miami Dolphins,2
+OTI,1990,Houston Oilers,1
+NOR,1990,New Orleans Saints,1
+PHI,1990,Philadelphia Eagles,1
+KAN,1990,Kansas City Chiefs,1
+WAS,1991,Washington Redskins,5
+BUF,1991,Buffalo Bills,4
+DET,1991,Detroit Lions,3
+DEN,1991,Denver Broncos,3
+DAL,1991,Dallas Cowboys,2
+KAN,1991,Kansas City Chiefs,2
+ATL,1991,Atlanta Falcons,2
+OTI,1991,Houston Oilers,2
+NYJ,1991,New York Jets,1
+CHI,1991,Chicago Bears,1
+RAI,1991,Los Angeles Raiders,1
+NOR,1991,New Orleans Saints,1
+DAL,1992,Dallas Cowboys,5
+BUF,1992,Buffalo Bills,4
+MIA,1992,Miami Dolphins,3
+SFO,1992,San Francisco 49ers,3
+SDG,1992,San Diego Chargers,2
+PHI,1992,Philadelphia Eagles,2
+PIT,1992,Pittsburgh Steelers,2
+WAS,1992,Washington Redskins,2
+NOR,1992,New Orleans Saints,1
+OTI,1992,Houston Oilers,1
+MIN,1992,Minnesota Vikings,1
+KAN,1992,Kansas City Chiefs,1
+DAL,1993,Dallas Cowboys,5
+BUF,1993,Buffalo Bills,4
+SFO,1993,San Francisco 49ers,3
+KAN,1993,Kansas City Chiefs,3
+OTI,1993,Houston Oilers,2
+GNB,1993,Green Bay Packers,2
+NYG,1993,New York Giants,2
+RAI,1993,Los Angeles Raiders,2
+DEN,1993,Denver Broncos,1
+MIN,1993,Minnesota Vikings,1
+PIT,1993,Pittsburgh Steelers,1
+DET,1993,Detroit Lions,1
+SFO,1994,San Francisco 49ers,5
+SDG,1994,San Diego Chargers,4
+DAL,1994,Dallas Cowboys,3
+PIT,1994,Pittsburgh Steelers,3
+MIA,1994,Miami Dolphins,2
+GNB,1994,Green Bay Packers,2
+CHI,1994,Chicago Bears,2
+CLE,1994,Cleveland Browns,2
+NWE,1994,New England Patriots,1
+MIN,1994,Minnesota Vikings,1
+KAN,1994,Kansas City Chiefs,1
+DET,1994,Detroit Lions,1
+DAL,1995,Dallas Cowboys,5
+PIT,1995,Pittsburgh Steelers,4
+CLT,1995,Indianapolis Colts,3
+GNB,1995,Green Bay Packers,3
+KAN,1995,Kansas City Chiefs,2
+PHI,1995,Philadelphia Eagles,2
+SFO,1995,San Francisco 49ers,2
+BUF,1995,Buffalo Bills,2
+ATL,1995,Atlanta Falcons,1
+SDG,1995,San Diego Chargers,1
+DET,1995,Detroit Lions,1
+MIA,1995,Miami Dolphins,1
+GNB,1996,Green Bay Packers,5
+NWE,1996,New England Patriots,4
+JAX,1996,Jacksonville Jaguars,3
+CAR,1996,Carolina Panthers,3
+PIT,1996,Pittsburgh Steelers,2
+DAL,1996,Dallas Cowboys,2
+DEN,1996,Denver Broncos,2
+SFO,1996,San Francisco 49ers,2
+PHI,1996,Philadelphia Eagles,1
+CLT,1996,Indianapolis Colts,1
+BUF,1996,Buffalo Bills,1
+MIN,1996,Minnesota Vikings,1
+DEN,1997,Denver Broncos,5
+GNB,1997,Green Bay Packers,4
+PIT,1997,Pittsburgh Steelers,3
+SFO,1997,San Francisco 49ers,3
+KAN,1997,Kansas City Chiefs,2
+TAM,1997,Tampa Bay Buccaneers,2
+MIN,1997,Minnesota Vikings,2
+NWE,1997,New England Patriots,2
+DET,1997,Detroit Lions,1
+MIA,1997,Miami Dolphins,1
+NYG,1997,New York Giants,1
+JAX,1997,Jacksonville Jaguars,1
+DEN,1998,Denver Broncos,5
+ATL,1998,Atlanta Falcons,4
+NYJ,1998,New York Jets,3
+MIN,1998,Minnesota Vikings,3
+JAX,1998,Jacksonville Jaguars,2
+CRD,1998,Arizona Cardinals,2
+MIA,1998,Miami Dolphins,2
+SFO,1998,San Francisco 49ers,2
+GNB,1998,Green Bay Packers,1
+NWE,1998,New England Patriots,1
+BUF,1998,Buffalo Bills,1
+DAL,1998,Dallas Cowboys,1
+RAM,1999,St. Louis Rams,5
+OTI,1999,Tennessee Titans,4
+JAX,1999,Jacksonville Jaguars,3
+TAM,1999,Tampa Bay Buccaneers,3
+CLT,1999,Indianapolis Colts,2
+MIN,1999,Minnesota Vikings,2
+WAS,1999,Washington Redskins,2
+MIA,1999,Miami Dolphins,2
+DAL,1999,Dallas Cowboys,1
+SEA,1999,Seattle Seahawks,1
+DET,1999,Detroit Lions,1
+BUF,1999,Buffalo Bills,1
+RAV,2000,Baltimore Ravens,5
+NYG,2000,New York Giants,4
+RAI,2000,Oakland Raiders,3
+MIN,2000,Minnesota Vikings,3
+OTI,2000,Tennessee Titans,2
+PHI,2000,Philadelphia Eagles,2
+MIA,2000,Miami Dolphins,2
+NOR,2000,New Orleans Saints,2
+DEN,2000,Denver Broncos,1
+TAM,2000,Tampa Bay Buccaneers,1
+RAM,2000,St. Louis Rams,1
+CLT,2000,Indianapolis Colts,1
+NWE,2001,New England Patriots,5
+RAM,2001,St. Louis Rams,4
+PHI,2001,Philadelphia Eagles,3
+PIT,2001,Pittsburgh Steelers,3
+GNB,2001,Green Bay Packers,2
+RAV,2001,Baltimore Ravens,2
+CHI,2001,Chicago Bears,2
+RAI,2001,Oakland Raiders,2
+MIA,2001,Miami Dolphins,1
+SFO,2001,San Francisco 49ers,1
+NYJ,2001,New York Jets,1
+TAM,2001,Tampa Bay Buccaneers,1
+TAM,2002,Tampa Bay Buccaneers,5
+RAI,2002,Oakland Raiders,4
+PHI,2002,Philadelphia Eagles,3
+OTI,2002,Tennessee Titans,3
+SFO,2002,San Francisco 49ers,2
+NYJ,2002,New York Jets,2
+ATL,2002,Atlanta Falcons,2
+PIT,2002,Pittsburgh Steelers,2
+NYG,2002,New York Giants,1
+CLE,2002,Cleveland Browns,1
+CLT,2002,Indianapolis Colts,1
+GNB,2002,Green Bay Packers,1
+NWE,2003,New England Patriots,5
+CAR,2003,Carolina Panthers,4
+PHI,2003,Philadelphia Eagles,3
+CLT,2003,Indianapolis Colts,3
+KAN,2003,Kansas City Chiefs,2
+GNB,2003,Green Bay Packers,2
+RAM,2003,St. Louis Rams,2
+OTI,2003,Tennessee Titans,2
+SEA,2003,Seattle Seahawks,1
+DEN,2003,Denver Broncos,1
+RAV,2003,Baltimore Ravens,1
+DAL,2003,Dallas Cowboys,1
+NWE,2004,New England Patriots,5
+PHI,2004,Philadelphia Eagles,4
+ATL,2004,Atlanta Falcons,3
+PIT,2004,Pittsburgh Steelers,3
+MIN,2004,Minnesota Vikings,2
+CLT,2004,Indianapolis Colts,2
+NYJ,2004,New York Jets,2
+RAM,2004,St. Louis Rams,2
+GNB,2004,Green Bay Packers,1
+DEN,2004,Denver Broncos,1
+SEA,2004,Seattle Seahawks,1
+SDG,2004,San Diego Chargers,1
+PIT,2005,Pittsburgh Steelers,5
+SEA,2005,Seattle Seahawks,4
+DEN,2005,Denver Broncos,3
+CAR,2005,Carolina Panthers,3
+CLT,2005,Indianapolis Colts,2
+CHI,2005,Chicago Bears,2
+WAS,2005,Washington Redskins,2
+NWE,2005,New England Patriots,2
+CIN,2005,Cincinnati Bengals,1
+NYG,2005,New York Giants,1
+TAM,2005,Tampa Bay Buccaneers,1
+JAX,2005,Jacksonville Jaguars,1
+CLT,2006,Indianapolis Colts,5
+CHI,2006,Chicago Bears,4
+NWE,2006,New England Patriots,3
+NOR,2006,New Orleans Saints,3
+SDG,2006,San Diego Chargers,2
+SEA,2006,Seattle Seahawks,2
+RAV,2006,Baltimore Ravens,2
+PHI,2006,Philadelphia Eagles,2
+NYG,2006,New York Giants,1
+NYJ,2006,New York Jets,1
+DAL,2006,Dallas Cowboys,1
+KAN,2006,Kansas City Chiefs,1
+NYG,2007,New York Giants,5
+NWE,2007,New England Patriots,4
+GNB,2007,Green Bay Packers,3
+SDG,2007,San Diego Chargers,3
+CLT,2007,Indianapolis Colts,2
+DAL,2007,Dallas Cowboys,2
+JAX,2007,Jacksonville Jaguars,2
+SEA,2007,Seattle Seahawks,2
+OTI,2007,Tennessee Titans,1
+TAM,2007,Tampa Bay Buccaneers,1
+WAS,2007,Washington Redskins,1
+PIT,2007,Pittsburgh Steelers,1
+PIT,2008,Pittsburgh Steelers,5
+CRD,2008,Arizona Cardinals,4
+PHI,2008,Philadelphia Eagles,3
+RAV,2008,Baltimore Ravens,3
+NYG,2008,New York Giants,2
+SDG,2008,San Diego Chargers,2
+OTI,2008,Tennessee Titans,2
+CAR,2008,Carolina Panthers,2
+MIA,2008,Miami Dolphins,1
+MIN,2008,Minnesota Vikings,1
+CLT,2008,Indianapolis Colts,1
+ATL,2008,Atlanta Falcons,1
+NOR,2009,New Orleans Saints,5
+CLT,2009,Indianapolis Colts,4
+MIN,2009,Minnesota Vikings,3
+NYJ,2009,New York Jets,3
+SDG,2009,San Diego Chargers,2
+DAL,2009,Dallas Cowboys,2
+CRD,2009,Arizona Cardinals,2
+RAV,2009,Baltimore Ravens,2
+NWE,2009,New England Patriots,1
+GNB,2009,Green Bay Packers,1
+CIN,2009,Cincinnati Bengals,1
+PHI,2009,Philadelphia Eagles,1
+GNB,2010,Green Bay Packers,5
+PIT,2010,Pittsburgh Steelers,4
+CHI,2010,Chicago Bears,3
+NYJ,2010,New York Jets,3
+NWE,2010,New England Patriots,2
+SEA,2010,Seattle Seahawks,2
+ATL,2010,Atlanta Falcons,2
+RAV,2010,Baltimore Ravens,2
+KAN,2010,Kansas City Chiefs,1
+PHI,2010,Philadelphia Eagles,1
+NOR,2010,New Orleans Saints,1
+CLT,2010,Indianapolis Colts,1
+NYG,2011,New York Giants,5
+NWE,2011,New England Patriots,4
+SFO,2011,San Francisco 49ers,3
+RAV,2011,Baltimore Ravens,3
+GNB,2011,Green Bay Packers,2
+HTX,2011,Houston Texans,2
+NOR,2011,New Orleans Saints,2
+DEN,2011,Denver Broncos,2
+ATL,2011,Atlanta Falcons,1
+PIT,2011,Pittsburgh Steelers,1
+DET,2011,Detroit Lions,1
+CIN,2011,Cincinnati Bengals,1
+RAV,2012,Baltimore Ravens,5
+SFO,2012,San Francisco 49ers,4
+NWE,2012,New England Patriots,3
+ATL,2012,Atlanta Falcons,3
+HTX,2012,Houston Texans,2
+SEA,2012,Seattle Seahawks,2
+DEN,2012,Denver Broncos,2
+GNB,2012,Green Bay Packers,2
+WAS,2012,Washington Redskins,1
+CLT,2012,Indianapolis Colts,1
+CIN,2012,Cincinnati Bengals,1
+MIN,2012,Minnesota Vikings,1
+SEA,2013,Seattle Seahawks,5
+DEN,2013,Denver Broncos,4
+SFO,2013,San Francisco 49ers,3
+NWE,2013,New England Patriots,3
+CAR,2013,Carolina Panthers,2
+SDG,2013,San Diego Chargers,2
+NOR,2013,New Orleans Saints,2
+CLT,2013,Indianapolis Colts,2
+GNB,2013,Green Bay Packers,1
+CIN,2013,Cincinnati Bengals,1
+PHI,2013,Philadelphia Eagles,1
+KAN,2013,Kansas City Chiefs,1
+NWE,2014,New England Patriots,5
+SEA,2014,Seattle Seahawks,4
+GNB,2014,Green Bay Packers,3
+CLT,2014,Indianapolis Colts,3
+DEN,2014,Denver Broncos,2
+DAL,2014,Dallas Cowboys,2
+CAR,2014,Carolina Panthers,2
+RAV,2014,Baltimore Ravens,2
+DET,2014,Detroit Lions,1
+CIN,2014,Cincinnati Bengals,1
+PIT,2014,Pittsburgh Steelers,1
+CRD,2014,Arizona Cardinals,1
+DEN,2015,Denver Broncos,5
+CAR,2015,Carolina Panthers,4
+NWE,2015,New England Patriots,3
+CRD,2015,Arizona Cardinals,3
+PIT,2015,Pittsburgh Steelers,2
+SEA,2015,Seattle Seahawks,2
+KAN,2015,Kansas City Chiefs,2
+GNB,2015,Green Bay Packers,2
+MIN,2015,Minnesota Vikings,1
+WAS,2015,Washington Redskins,1
+CIN,2015,Cincinnati Bengals,1
+HTX,2015,Houston Texans,1
+NWE,2016,New England Patriots,5
+ATL,2016,Atlanta Falcons,4
+PIT,2016,Pittsburgh Steelers,3
+GNB,2016,Green Bay Packers,3
+KAN,2016,Kansas City Chiefs,2
+DAL,2016,Dallas Cowboys,2
+HTX,2016,Houston Texans,2
+SEA,2016,Seattle Seahawks,2
+MIA,2016,Miami Dolphins,1
+NYG,2016,New York Giants,1
+DET,2016,Detroit Lions,1
+RAI,2016,Oakland Raiders,1
+PHI,2017,Philadelphia Eagles,5
+NWE,2017,New England Patriots,4
+MIN,2017,Minnesota Vikings,3
+JAX,2017,Jacksonville Jaguars,3
+PIT,2017,Pittsburgh Steelers,2
+NOR,2017,New Orleans Saints,2
+ATL,2017,Atlanta Falcons,2
+OTI,2017,Tennessee Titans,2
+CAR,2017,Carolina Panthers,1
+BUF,2017,Buffalo Bills,1
+KAN,2017,Kansas City Chiefs,1
+RAM,2017,Los Angeles Rams,1
+NWE,2018,New England Patriots,5
+RAM,2018,Los Angeles Rams,4
+NOR,2018,New Orleans Saints,3
+KAN,2018,Kansas City Chiefs,3
+SDG,2018,Los Angeles Chargers,2
+PHI,2018,Philadelphia Eagles,2
+DAL,2018,Dallas Cowboys,2
+CLT,2018,Indianapolis Colts,2
+RAV,2018,Baltimore Ravens,1
+CHI,2018,Chicago Bears,1
+SEA,2018,Seattle Seahawks,1
+HTX,2018,Houston Texans,1
+KAN,2019,Kansas City Chiefs,5
+SFO,2019,San Francisco 49ers,4
+GNB,2019,Green Bay Packers,3
+OTI,2019,Tennessee Titans,3
+HTX,2019,Houston Texans,2
+SEA,2019,Seattle Seahawks,2
+RAV,2019,Baltimore Ravens,2
+MIN,2019,Minnesota Vikings,2
+PHI,2019,Philadelphia Eagles,1
+NOR,2019,New Orleans Saints,1
+NWE,2019,New England Patriots,1
+BUF,2019,Buffalo Bills,1
+TAM,2020,Tampa Bay Buccaneers,5
+KAN,2020,Kansas City Chiefs,4
+GNB,2020,Green Bay Packers,3
+BUF,2020,Buffalo Bills,3
+NOR,2020,New Orleans Saints,2
+CLE,2020,Cleveland Browns,2
+RAV,2020,Baltimore Ravens,2
+RAM,2020,Los Angeles Rams,2
+OTI,2020,Tennessee Titans,1
+CHI,2020,Chicago Bears,1
+PIT,2020,Pittsburgh Steelers,1
+WAS,2020,Washington Football Team,1
+SEA,2020,Seattle Seahawks,1
+CLT,2020,Indianapolis Colts,1
+RAM,2021,Los Angeles Rams,5
+CIN,2021,Cincinnati Bengals,4
+SFO,2021,San Francisco 49ers,3
+KAN,2021,Kansas City Chiefs,3
+TAM,2021,Tampa Bay Buccaneers,2
+BUF,2021,Buffalo Bills,2
+GNB,2021,Green Bay Packers,2
+OTI,2021,Tennessee Titans,2
+CRD,2021,Arizona Cardinals,1
+PHI,2021,Philadelphia Eagles,1
+DAL,2021,Dallas Cowboys,1
+PIT,2021,Pittsburgh Steelers,1
+RAI,2021,Las Vegas Raiders,1
+NWE,2021,New England Patriots,1
+KAN,2022,Kansas City Chiefs,5
+PHI,2022,Philadelphia Eagles,4
+SFO,2022,San Francisco 49ers,3
+CIN,2022,Cincinnati Bengals,3
+DAL,2022,Dallas Cowboys,2
+BUF,2022,Buffalo Bills,2
+NYG,2022,New York Giants,2
+JAX,2022,Jacksonville Jaguars,2
+TAM,2022,Tampa Bay Buccaneers,1
+MIN,2022,Minnesota Vikings,1
+RAV,2022,Baltimore Ravens,1
+MIA,2022,Miami Dolphins,1
+SEA,2022,Seattle Seahawks,1
+SDG,2022,Los Angeles Chargers,1
+KAN,2023,Kansas City Chiefs,5
+SFO,2023,San Francisco 49ers,4
+RAV,2023,Baltimore Ravens,3
+DET,2023,Detroit Lions,3
+BUF,2023,Buffalo Bills,2
+HTX,2023,Houston Texans,2
+TAM,2023,Tampa Bay Buccaneers,2
+GNB,2023,Green Bay Packers,2
+DAL,2023,Dallas Cowboys,1
+PHI,2023,Philadelphia Eagles,1
+CLE,2023,Cleveland Browns,1
+MIA,2023,Miami Dolphins,1
+RAM,2023,Los Angeles Rams,1
+PIT,2023,Pittsburgh Steelers,1
+PHI,2024,Philadelphia Eagles,5
+KAN,2024,Kansas City Chiefs,4
+BUF,2024,Buffalo Bills,3
+WAS,2024,Washington Commanders,3
+DET,2024,Detroit Lions,2
+RAV,2024,Baltimore Ravens,2
+HTX,2024,Houston Texans,2
+RAM,2024,Los Angeles Rams,2
+TAM,2024,Tampa Bay Buccaneers,1
+SDG,2024,Los Angeles Chargers,1
+MIN,2024,Minnesota Vikings,1
+PIT,2024,Pittsburgh Steelers,1
+GNB,2024,Green Bay Packers,1
+DEN,2024,Denver Broncos,1
+SEA,2025,Seattle Seahawks,5
+NWE,2025,New England Patriots,4
+RAM,2025,Los Angeles Rams,3
+DEN,2025,Denver Broncos,3
+BUF,2025,Buffalo Bills,2
+SFO,2025,San Francisco 49ers,2
+HTX,2025,Houston Texans,2
+CHI,2025,Chicago Bears,2
+GNB,2025,Green Bay Packers,1
+CAR,2025,Carolina Panthers,1
+JAX,2025,Jacksonville Jaguars,1
+SDG,2025,Los Angeles Chargers,1
+PHI,2025,Philadelphia Eagles,1
+PIT,2025,Pittsburgh Steelers,1

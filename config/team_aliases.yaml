@@ -1,0 +1,16 @@
+# Historical / alternate team names → current canonical names.
+# Applied when scraping tables that still use old branding (or site typos).
+
+"San Diego Chargers": "Los Angeles Chargers"
+"Oakland Raiders": "Las Vegas Raiders"
+"Los Angeles Raiders": "Las Vegas Raiders"
+"St. Louis Rams": "Los Angeles Rams"
+"St Louis Rams": "Los Angeles Rams"          # sportsoddshistory missing period
+"Washington Redskins": "Washington Commanders"
+"Washington Football Team": "Washington Commanders"
+"Houston Oilers": "Tennessee Titans"
+"Tennessee Oilers": "Tennessee Titans"
+"Baltimore Colts": "Indianapolis Colts"
+"St. Louis Cardinals": "Arizona Cardinals"
+"Phoenix Cardinals": "Arizona Cardinals"
+"Boston Patriots": "New England Patriots"

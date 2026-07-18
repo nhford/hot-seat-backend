@@ -1,0 +1,31 @@
+# Coach ids treated as person of color for the firing model (from historical notebook list).
+poc:
+  - SmitLo0
+  - BowlTo0
+  - CaldJi0
+  - TomlMi0
+  - JoseVa0
+  - DungTo0
+  - EdwaHe0
+  - MayoJe0
+  - MorrRa0
+  - FlorBr0
+  - RyanDe0
+  - LynnAn0
+  - WilkSt0
+  - FrazLe0
+  - LewiMa0
+  - RhodRa0
+  - GreeDe0
+  - ShelAr0
+  - FlorTo0
+  - PierAn0
+  - CrenRo0
+  - JackHu0
+  - SingMi0
+  # POC, but not Black
+  - SaleRo0
+  - McDaMi0
+  - CullDa0
+  - RiveRo0
+  - CanaDa0
