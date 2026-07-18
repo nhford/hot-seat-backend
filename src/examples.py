@@ -435,6 +435,143 @@ def categorical_feature_names(k: int = DEFAULT_K) -> list[str]:
     return names
 
 
+def _flatten_sequence(
+    context: dict[str, Any],
+    sequence: list[dict[str, Any]],
+    *,
+    coach_id: str,
+    year: int,
+    team: str,
+    k: int = DEFAULT_K,
+    fired: int = 0,
+) -> dict[str, Any]:
+    recent = list(reversed(sequence[-k:]))
+    flat: dict[str, Any] = {
+        "fired": fired,
+        "id": coach_id,
+        "year": year,
+        "tm": team,
+    }
+    flat.update(context)
+    for lag in range(k):
+        suffix = f"_t{lag}"
+        if lag < len(recent):
+            tok = recent[lag]
+            for field in SEASON_TOKEN_FIELDS:
+                flat[f"{field}{suffix}"] = tok[field]
+        else:
+            for field in SEASON_TOKEN_FIELDS:
+                flat[f"{field}{suffix}"] = np.nan
+    return flat
+
+
+def new_hire_flat_row(
+    coach_id: str,
+    team: str,
+    *,
+    season: int,
+    ages: dict[str, int],
+    futures: pd.DataFrame,
+    panel: pd.DataFrame,
+    k: int = DEFAULT_K,
+) -> dict[str, Any]:
+    """Build one flattened LightGBM row for a prediction-season new hire."""
+    standings = panel.attrs["standings"]
+    playoffs_pivot = panel.attrs["playoffs_pivot"]
+    franchise_map = panel.attrs.get("franchise_map") or load_franchise_map()
+    aliases = panel.attrs.get("aliases") or load_abbrev_aliases()
+    valid = panel.attrs.get("valid") or set(
+        pd.read_csv(ROOT / "config" / "teams.csv")["Abbrev"].astype(str)
+    )
+
+    coach_hist = panel[panel["id"] == coach_id].sort_values("Year")
+    tm_key = convert_team(
+        team, aliases, valid, year=season, franchise_map=franchise_map
+    )
+    prehire = _prehire_context(
+        tm_key,
+        season,
+        standings,
+        playoffs_pivot,
+        franchise_map=franchise_map,
+    )
+
+    if coach_hist.empty:
+        if coach_id not in ages:
+            raise KeyError(f"Missing age for new coach {coach_id} in hires.yaml")
+        age = ages[coach_id]
+        exp = 1
+        poc = int(coach_id in load_poc())
+        prior_ctx = _prior_context(pd.DataFrame())
+        years_since = float("nan")
+        career_through = pd.DataFrame()
+    else:
+        last = coach_hist.iloc[-1]
+        age = ages.get(coach_id, int(last["age"]) + 1)
+        exp = int(last["exp"]) + 1
+        poc = int(last["poc"])
+        prior_ctx = _prior_context(coach_hist)
+        years_since = float(season - int(coach_hist["Year"].max()) - 1)
+        career_through = coach_hist
+
+    if team not in futures.index:
+        raise KeyError(f"Team {team} missing from futures")
+    round_val = float(futures.loc[team, "Round"])
+    t0 = {
+        "age": float(age),
+        "playoff_round": int(round(round_val)),
+        "win_pct": float(futures.loc[team, "win_pct"]),
+        "w_plyf": round(round_val * (13 / 30), 2),
+        "coy_share": 0.0,
+        "coy_rank": None,
+        "tenure_idx": 1,
+    }
+    context = {
+        "exp": exp,
+        "tenure": 1,
+        "poc": poc,
+        **prior_ctx,
+        **_career_sb_context(career_through),
+        "years_since_last_hc": years_since,
+        **prehire,
+    }
+    return _flatten_sequence(
+        context,
+        [t0],
+        coach_id=coach_id,
+        year=season,
+        team=team,
+        k=k,
+        fired=0,
+    )
+
+
+def build_new_hire_flats(
+    *,
+    season: int,
+    teams: dict[str, str],
+    ages: dict[str, int],
+    futures: pd.DataFrame,
+    panel: pd.DataFrame | None = None,
+    k: int = DEFAULT_K,
+) -> pd.DataFrame:
+    if panel is None:
+        panel = load_base_panel()
+    rows = [
+        new_hire_flat_row(
+            coach_id,
+            team,
+            season=season,
+            ages=ages,
+            futures=futures,
+            panel=panel,
+            k=k,
+        )
+        for team, coach_id in teams.items()
+    ]
+    return pd.DataFrame(rows)
+
+
 def write_jsonl(examples: list[dict[str, Any]], path: Path) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with open(path, "w") as f:

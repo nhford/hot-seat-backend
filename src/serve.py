@@ -1,7 +1,7 @@
 """FastAPI predict service for Hot Seat What-If scoring.
 
-Loads `model/random_forest.pkl` (written by `python -m src.score`) and exposes
-the same `/predict` contract the Netlify frontend already calls.
+Loads `model/lightgbm.pkl` (written by `python -m src.fit` / `python -m src.score`)
+and exposes the same `/predict` contract the Netlify frontend already calls.
 
 Usage (from repo root):
 
@@ -10,8 +10,6 @@ Usage (from repo root):
 
 from __future__ import annotations
 
-import pickle
-from pathlib import Path
 from typing import Any
 
 import pandas as pd
@@ -19,13 +17,12 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 
-ROOT = Path(__file__).resolve().parents[1]
-MODEL_PATH = ROOT / "model" / "random_forest.pkl"
+from .predict import DEFAULT_MODEL_PATH, load_artifact, prepare_features
 
-with open(MODEL_PATH, "rb") as file:
-    _model_data = pickle.load(file)
-    model = _model_data["model"]
-    features: list[str] = list(_model_data["feature_names"])
+_artifact = load_artifact(DEFAULT_MODEL_PATH)
+model = _artifact["model"]
+features: list[str] = list(_artifact["feature_names"])
+categorical_features: list[str] = list(_artifact.get("categorical_features") or [])
 
 app = FastAPI(title="Hot Seat Predict API")
 
@@ -50,7 +47,7 @@ class ModelInput(BaseModel):
     named_features: dict[str, Any] | None = Field(default=None)
 
 
-def _row_from_request(data: ModelInput) -> list[float]:
+def _row_from_request(data: ModelInput) -> pd.DataFrame:
     if data.named_features is not None:
         missing = [name for name in features if name not in data.named_features]
         if missing:
@@ -58,7 +55,8 @@ def _row_from_request(data: ModelInput) -> list[float]:
                 status_code=422,
                 detail=f"Missing features: {missing}",
             )
-        return [float(data.named_features[name]) for name in features]
+        row = {name: data.named_features[name] for name in features}
+        return prepare_features(pd.DataFrame([row]), _artifact)
 
     if data.features is None:
         raise HTTPException(
@@ -73,7 +71,8 @@ def _row_from_request(data: ModelInput) -> list[float]:
                 f"{features}, got {len(data.features)}"
             ),
         )
-    return [float(v) for v in data.features]
+    row = dict(zip(features, data.features))
+    return prepare_features(pd.DataFrame([row]), _artifact)
 
 
 @app.get("/")
@@ -83,12 +82,17 @@ def home() -> dict[str, str]:
 
 @app.get("/health")
 def health() -> dict[str, Any]:
-    return {"ok": True, "n_features": len(features), "features": features}
+    return {
+        "ok": True,
+        "model": DEFAULT_MODEL_PATH.name,
+        "n_features": len(features),
+        "features": features,
+        "categorical_features": categorical_features,
+    }
 
 
 @app.post("/predict")
 def predict(data: ModelInput) -> dict[str, Any]:
-    row = _row_from_request(data)
-    input_df = pd.DataFrame([row], columns=features)
+    input_df = _row_from_request(data)
     prediction = model.predict_proba(input_df)
     return {"prediction": prediction.tolist()}

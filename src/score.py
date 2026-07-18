@@ -1,28 +1,27 @@
 """Build `data/export.csv` for the active prediction season.
 
-Scores historical coach-seasons with a Random Forest (GroupKFold OOF),
+Scores historical coach-seasons with LightGBM (GroupKFold OOF from `src.fit`),
 rolls non-fired coaches from `history_end` into `season`, synthesizes new-hire
 rows from `config/<season>/hires.yaml` + futures, and writes the display table.
 
 Usage (from repo root):
 
     python -m src.score
-    python -m src.score --skip-train   # reuse model/training.csv as-is
+    python -m src.score --skip-train   # reuse training.csv + lightgbm artifacts
 """
 
 from __future__ import annotations
 
 import argparse
-import pickle
 from pathlib import Path
 
 import numpy as np
 import pandas as pd
 import yaml
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.model_selection import GroupKFold
-from tqdm import tqdm
 
+from .examples import build_and_write as build_examples, build_new_hire_flats, load_base_panel
+from .predict import FLAT_PATH, OOF_PATH, load_artifact, predict_proba
+from .predict import DEFAULT_MODEL_PATH as MODEL_PATH
 from .reference import load_abbrev_aliases
 from .scrape import COACHES_PATH, DERIVED_DIR, load_teams_table
 from .season import ROOT, load_settings
@@ -30,7 +29,6 @@ from .training import TRAINING_PATH, build_and_write, convert_team
 
 EXPORT_PATH = ROOT / "data" / "export.csv"
 FUTURES_PATH = DERIVED_DIR / "futures.csv"
-MODEL_PATH = ROOT / "model" / "random_forest.pkl"
 COLORS_PATH = ROOT / "config" / "team_colors.csv"
 COACH_SEASONS_PATH = DERIVED_DIR / "coach_seasons.csv"
 GM_PATH = DERIVED_DIR / "gm.csv"
@@ -192,46 +190,26 @@ def _add_gm_column(training: pd.DataFrame) -> pd.DataFrame:
     return out[cols]
 
 
-def train_and_oof(
-    data: pd.DataFrame,
-    *,
-    n_splits: int = 5,
-    model_path: Path = MODEL_PATH,
-) -> tuple[pd.DataFrame, RandomForestClassifier, list[str]]:
-    """GroupKFold OOF probs + final model fit on all rows (notebook parity)."""
-    labels = data[LABEL_COLS].copy()
-    feature_names = [c for c in data.columns if c not in LABEL_COLS]
-    X = data[feature_names]
-    y = data["fired"]
-    groups = data["id"]
-
-    model = RandomForestClassifier(random_state=42)
-    gkf = GroupKFold(n_splits=n_splits)
-    scored_parts: list[pd.DataFrame] = []
-
-    for train_idx, test_idx in tqdm(
-        gkf.split(X, y, groups=groups), total=n_splits, desc="OOF folds"
-    ):
-        fold = RandomForestClassifier(random_state=42)
-        fold.fit(X.iloc[train_idx], y.iloc[train_idx])
-        proba = fold.predict_proba(X.iloc[test_idx])[:, 1]
-        pred = fold.predict(X.iloc[test_idx])
-        part = X.iloc[test_idx].copy()
-        part["pred"] = pred
-        part["prob"] = proba
-        scored_parts.append(part)
-
-    model.fit(X, y)
-    model_path.parent.mkdir(parents=True, exist_ok=True)
-    with open(model_path, "wb") as f:
-        pickle.dump({"model": model, "feature_names": feature_names}, f)
-    print(f"Wrote {model_path.relative_to(ROOT)}")
-
-    scored = pd.concat(scored_parts)
-    # Align back to original row order via index
-    scored = scored.reindex(X.index)
-    labeled = pd.concat([labels, scored], axis=1)
-    return labeled, model, feature_names
+def attach_oof_probs(
+    display: pd.DataFrame,
+    oof_path: Path = OOF_PATH,
+) -> pd.DataFrame:
+    """Merge LightGBM OOF probabilities onto display rows by coach id + year."""
+    oof = pd.read_csv(oof_path)
+    merged = display.merge(
+        oof[["id", "year", "proba"]],
+        on=["id", "year"],
+        how="left",
+    )
+    if merged["proba"].isna().any():
+        missing = int(merged["proba"].isna().sum())
+        raise ValueError(
+            f"{missing} display rows missing OOF scores; rebuild examples/model "
+            f"with `python -m src.score` (no --skip-train)."
+        )
+    merged["prob"] = merged.pop("proba")
+    merged["pred"] = (merged["prob"] >= 0.5).astype(int)
+    return merged
 
 
 def new_coach_row(
@@ -296,19 +274,26 @@ def build_new_coaches(
     ages: dict[str, int],
     dataset: pd.DataFrame,
     futures: pd.DataFrame,
-    model: RandomForestClassifier,
-    feature_names: list[str],
+    artifact: dict,
+    panel: pd.DataFrame,
+    k: int,
 ) -> pd.DataFrame:
-    rows = [
+    display_rows = [
         new_coach_row(
             coach_id, team, season=season, ages=ages, dataset=dataset, futures=futures
         )
         for team, coach_id in teams.items()
     ]
-    out = pd.DataFrame(rows)
-    X = out[feature_names]
-    proba = model.predict_proba(X)[:, 1]
-    out["prob"] = proba
+    out = pd.DataFrame(display_rows)
+    flats = build_new_hire_flats(
+        season=season,
+        teams=teams,
+        ages=ages,
+        futures=futures,
+        panel=panel,
+        k=k,
+    )
+    out["prob"] = predict_proba(flats, artifact).values
     out["pred"] = (out["prob"] >= 0.5).astype(int)
     return out
 
@@ -409,6 +394,20 @@ def build_export(
 
     futures = build_futures(season=season, games=settings.games)
 
+    if skip_train and all(
+        p.exists()
+        for p in (TRAINING_PATH, FLAT_PATH, MODEL_PATH, OOF_PATH)
+    ):
+        print(
+            f"Loaded artifacts: {TRAINING_PATH.name}, {FLAT_PATH.name}, "
+            f"{MODEL_PATH.name}, {OOF_PATH.name}"
+        )
+    else:
+        build_examples()
+        from .fit import train as train_lgb
+
+        train_lgb()
+
     if skip_train and TRAINING_PATH.exists():
         training_raw = pd.read_csv(TRAINING_PATH, index_col=0)
         print(f"Loaded {TRAINING_PATH.relative_to(ROOT)} ({len(training_raw)} rows)")
@@ -417,8 +416,9 @@ def build_export(
 
     training_raw = _add_gm_column(training_raw)
     data = clean_column_names(training_raw)
-
-    historical, model, feature_names = train_and_oof(data)
+    historical = attach_oof_probs(data)
+    artifact = load_artifact(MODEL_PATH)
+    panel = load_base_panel()
 
     # Incumbents: non-fired history_end rows → prediction season (keep OOF prob).
     incumbents = historical[
@@ -436,8 +436,9 @@ def build_export(
         ages=ages,
         dataset=data,
         futures=futures,
-        model=model,
-        feature_names=feature_names,
+        artifact=artifact,
+        panel=panel,
+        k=int(artifact.get("k", 5)),
     )
 
     export = assemble_export(
@@ -472,7 +473,7 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument(
         "--skip-train",
         action="store_true",
-        help="Reuse existing model/training.csv instead of rebuilding",
+        help="Reuse training.csv and LightGBM artifacts instead of rebuilding",
     )
     return p
 

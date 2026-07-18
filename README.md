@@ -1,6 +1,6 @@
 # NFL Head Coach Hot Seat
 
-Predicts NFL head-coach firing probability from historical Pro-Football-Reference data, Vegas odds, and tenure/context features. A Random Forest scores each coach-season; results land in `data/export.csv` and are upserted to Supabase for the frontend.
+Predicts NFL head-coach firing probability from historical Pro-Football-Reference data, Vegas odds, and tenure/context features. LightGBM scores each coach-season; results land in `data/export.csv` and are upserted to Supabase for the frontend.
 
 ## Layout
 
@@ -28,13 +28,13 @@ data/
   derived/              # Regenerable pivots / features
   export.csv            # Final publish artifact
 
-model/                  # training.csv + random_forest.pkl
+model/                  # training.csv, examples_flat.csv, lightgbm.pkl
 src/                    # Pipeline Python modules
   fetch.py              # HTTP + read_html helpers
   cache.py              # load_or_build CSV cache
   season.py             # settings.yaml loader
   scrape.py             # scrape CLI (index / coaches / odds)
-  score.py              # train RF, score coaches, write data/export.csv
+  score.py              # score coaches with LightGBM, write data/export.csv
   export.py             # upsert data/export.csv → Supabase coach_year_v2
   serve.py              # FastAPI /predict for Hot Seat What-If
 hot_seat.ipynb          # Features + model (still notebook)
@@ -102,7 +102,7 @@ SUPABASE_SERVICE_ROLE=...
 
    ```bash
    python -m src.score              # rebuild training if needed, score, write data/export.csv
-   python -m src.score --skip-train # reuse model/training.csv
+   python -m src.score --skip-train # reuse training.csv + lightgbm artifacts
    ```
 
 4. **Publish** to Supabase (`coach_year_v2`):
@@ -116,7 +116,7 @@ SUPABASE_SERVICE_ROLE=...
 
 ## Predict API (What-If)
 
-The Netlify Hot Seat app calls `POST /predict` for interactive next-season scoring. That endpoint lives here so it always uses the same `model/random_forest.pkl` written by `src.score`.
+The Netlify Hot Seat app calls `POST /predict` for interactive next-season scoring. That endpoint lives here so it always uses the same `model/lightgbm.pkl` written by `python -m src.fit` / `python -m src.score`.
 
 Local:
 
@@ -133,7 +133,7 @@ Prefer `named_features` (the frontend already sends this) so column order cannot
 
 ### Deploy to Render
 
-1. Commit and push `src/serve.py`, `requirements-serve.txt`, `render.yaml`, and an up-to-date `model/random_forest.pkl` (from `python -m src.score`).
+1. Commit and push `src/serve.py`, `requirements-serve.txt`, `render.yaml`, and an up-to-date `model/lightgbm.pkl` (from `python -m src.fit` or `python -m src.score`).
 2. In [Render](https://dashboard.render.com): **New → Blueprint**, connect `NFordUMass/coaches`, apply `render.yaml`.  
    Or **New → Web Service**, connect the repo, then set:
    - **Runtime:** Python
@@ -142,7 +142,7 @@ Prefer `named_features` (the frontend already sends this) so column order cannot
    - **Health check path:** `/health`
 3. Deploy. Note the service URL (e.g. `https://hot-seat-backend.onrender.com`).
 4. Point the frontend (`Hot-Seat` → `WhatIf.tsx`) at that URL’s `/predict` if it differs from the current one.
-5. After each model retrain, commit the new `model/random_forest.pkl` and let Render redeploy (or trigger a manual deploy) so What-If stays in sync with batch scores.
+5. After each model retrain, commit the new `model/lightgbm.pkl` and let Render redeploy (or trigger a manual deploy) so What-If stays in sync with batch scores.
 
 Free-tier notes: the service spins down when idle; the first request after sleep is slow. Keep scrape/train deps out of this service — use `requirements-serve.txt`, not full `requirements.txt`.
 
