@@ -1,0 +1,8 @@
+services:
+  - type: web
+    name: hot-seat-backend
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements-serve.txt
+    startCommand: uvicorn src.serve:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
