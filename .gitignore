@@ -7,3 +7,9 @@ __pycache__/
 venv/
 *.egg-info/
 .pytest_cache/
+
+# Raw PFR team-year pages (regenerate via scrape teams; derived CSVs stay tracked)
+data/scraped/teams/*.htm
+# One-off browser saves for Cloudflare --html workarounds
+/*.htm
+/*.html
