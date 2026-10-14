@@ -29,8 +29,8 @@ from .season import ROOT
 DEFAULT_EXPORT = ROOT / "data" / "export.csv"
 DEFAULT_ENV = ROOT / ".env"
 TABLE = "coach_year_v2"
-# Matches PRIMARY KEY in supabase/coach_year_v2.sql
-ON_CONFLICT = "id,year,team"
+# Live primary key is (id, year, tm). `team` is a separate display column.
+ON_CONFLICT = "id,year,tm"
 # PostgREST / gateway payloads blow up if the whole CSV goes in one request.
 DEFAULT_CHUNK_SIZE = 200
 SCHEMA_SQL = ROOT / "supabase" / "coach_year_v2.sql"
@@ -47,7 +47,6 @@ INT_COLUMNS = frozenset(
         "gm",
         "owner",
         "coy_rank",
-        "poc",
         "pred",
         "wins",
         "losses",
@@ -57,6 +56,8 @@ INT_COLUMNS = frozenset(
         "delta_3yr_plyf",
     }
 )
+# Live `poc` is boolean. CSV stores 0/1.
+BOOL_COLUMNS = frozenset({"poc"})
 
 
 def _json_safe(value: Any, *, column: str | None = None) -> Any:
@@ -72,6 +73,10 @@ def _json_safe(value: Any, *, column: str | None = None) -> Any:
             value = value.item()
         except (ValueError, AttributeError):
             pass
+    if column in BOOL_COLUMNS and isinstance(value, (int, float)) and not isinstance(
+        value, bool
+    ):
+        return bool(int(value))
     if column in INT_COLUMNS and isinstance(value, (int, float)) and not isinstance(
         value, bool
     ):

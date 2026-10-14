@@ -23,7 +23,7 @@ create table if not exists public.coach_year_v2 (
   owner integer,
   coy_share double precision,
   coy_rank integer,
-  poc integer,
+  poc boolean,
   delta_1yr_win_pct double precision,
   delta_2yr_win_pct double precision,
   delta_3yr_win_pct double precision,
@@ -40,7 +40,7 @@ create table if not exists public.coach_year_v2 (
   losses integer,
   l_plyf integer,
   ou_line double precision,
-  primary key (id, year, team)
+  primary key (id, year, tm)
 );
 
 create index if not exists coach_year_v2_year_idx on public.coach_year_v2 (year);
@@ -49,3 +49,23 @@ create index if not exists coach_year_v2_team_idx on public.coach_year_v2 (team)
 alter table public.coach_year_v2 enable row level security;
 
 -- Service role bypasses RLS; add anon/authenticated policies only if the frontend reads this table directly.
+
+-- Refresh runs as the function owner. The API role is not the owner of
+-- agg_by_coach_view, so an invoker trigger fails the upsert with 42501.
+create or replace function public.refresh_agg_by_coach_view()
+returns trigger
+language plpgsql
+security definer
+set search_path = public
+as $$
+begin
+  refresh materialized view public.agg_by_coach_view;
+  return null;
+end;
+$$;
+
+drop trigger if exists refresh_agg_by_coach_trigger on public.coach_year_v2;
+create trigger refresh_agg_by_coach_trigger
+after insert or delete or update on public.coach_year_v2
+for each statement
+execute function public.refresh_agg_by_coach_view();
