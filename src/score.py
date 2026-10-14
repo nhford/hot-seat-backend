@@ -4,25 +4,36 @@ Scores historical coach-seasons with LightGBM (GroupKFold OOF from `src.fit`),
 rolls non-fired coaches from `history_end` into `season`, synthesizes new-hire
 rows from `config/<season>/hires.yaml` + futures, and writes the display table.
 
+``--pace`` re-scores every active-season coach from the weekly win projection
+(market season total, or a results blend when the board is missing a team).
+Exit code 2 means the season has no completed games and the export was not written.
+
 Usage (from repo root):
 
     python -m src.score
     python -m src.score --skip-train   # reuse training.csv + lightgbm artifacts
+    python -m src.score --skip-train --pace
 """
 
 from __future__ import annotations
 
 import argparse
+import sys
 from pathlib import Path
 
 import numpy as np
 import pandas as pd
 import yaml
 
-from .examples import build_and_write as build_examples, build_new_hire_flats, load_base_panel
+from .examples import (
+    build_and_write as build_examples,
+    build_incumbent_flats,
+    build_new_hire_flats,
+    load_base_panel,
+)
 from .predict import FLAT_PATH, OOF_PATH, load_artifact, predict_proba
 from .predict import DEFAULT_MODEL_PATH as MODEL_PATH
-from .reference import load_abbrev_aliases
+from .reference import canonical_team, load_abbrev_aliases
 from .scrape import COACHES_PATH, DERIVED_DIR, load_teams_table
 from .season import ROOT, load_settings
 from .training import TRAINING_PATH, build_and_write, convert_team
@@ -220,6 +231,7 @@ def new_coach_row(
     ages: dict[str, int],
     dataset: pd.DataFrame,
     futures: pd.DataFrame,
+    proj_win_pct: float | None = None,
 ) -> pd.Series:
     """Synthesize a tenure-1 prediction-season feature row (notebook new_coach)."""
     custom: dict[str, object] = {
@@ -259,11 +271,20 @@ def new_coach_row(
     if coach_id not in ages and not len(hist):
         raise KeyError(f"Missing age for new coach {coach_id} in hires.yaml")
     row["age"] = ages.get(coach_id, int(hist.iloc[-1]["age"]) + 1 if len(hist) else 0)
-    if team not in futures.index:
+    team_key = _canonical_abbrev(
+        team,
+        aliases=load_abbrev_aliases(),
+        valid=set(load_teams_table()["Abbrev"].astype(str)),
+    )
+    if team_key not in futures.index:
         raise KeyError(f"Team {team} missing from futures")
-    row["round"] = float(futures.loc[team, "Round"])
+    row["round"] = float(futures.loc[team_key, "Round"])
     row["w_plyf"] = round(float(row["round"]) * (13 / 30), 2)
-    row["win_pct"] = float(futures.loc[team, "win_pct"])
+    row["win_pct"] = (
+        float(futures.loc[team_key, "win_pct"])
+        if proj_win_pct is None
+        else float(proj_win_pct)
+    )
     return pd.Series(row)
 
 
@@ -277,10 +298,17 @@ def build_new_coaches(
     artifact: dict,
     panel: pd.DataFrame,
     k: int,
+    proj_win_pct: dict[str, float] | None = None,
 ) -> pd.DataFrame:
     display_rows = [
         new_coach_row(
-            coach_id, team, season=season, ages=ages, dataset=dataset, futures=futures
+            coach_id,
+            team,
+            season=season,
+            ages=ages,
+            dataset=dataset,
+            futures=futures,
+            proj_win_pct=None if proj_win_pct is None else proj_win_pct[team],
         )
         for team, coach_id in teams.items()
     ]
@@ -292,6 +320,7 @@ def build_new_coaches(
         futures=futures,
         panel=panel,
         k=k,
+        proj_win_pct=proj_win_pct,
     )
     out["prob"] = predict_proba(flats, artifact).values
     out["pred"] = (out["prob"] >= 0.5).astype(int)
@@ -307,6 +336,50 @@ def _team_key(abbrev: str, *, aliases: dict[str, str], valid: set[str]) -> str:
     return convert_team(abbrev, aliases=aliases, valid=valid)
 
 
+def _canonical_abbrev(
+    abbrev: str,
+    *,
+    aliases: dict[str, str],
+    valid: set[str],
+) -> str:
+    key = canonical_team(str(abbrev), aliases=aliases, valid=valid)
+    if key is None:
+        raise KeyError(f"Unmapped team {abbrev}")
+    return str(key)
+
+
+def _project_season_display(
+    rows: pd.DataFrame,
+    futures: pd.DataFrame,
+    proj_win_pct: dict[str, float],
+    *,
+    aliases: dict[str, str],
+    valid: set[str],
+) -> pd.DataFrame:
+    """Point the active-season display row at the weekly projection.
+
+    Playoff round stays on the preseason futures mapping. COY stays 0.
+    ``proj_win_pct`` is keyed by canonical abbrev. Row ``tm`` may be the
+    coach-page code (for example LAC) and is left unchanged.
+    """
+    out = rows.copy()
+    for col in ("win_pct", "round", "w_plyf", "coy_share"):
+        out[col] = out[col].astype(float)
+    for idx, row in out.iterrows():
+        team = _canonical_abbrev(str(row["tm"]), aliases=aliases, valid=valid)
+        if team not in proj_win_pct:
+            raise KeyError(f"{row['tm']} ({team}) missing from pace projection")
+        if team not in futures.index:
+            raise KeyError(f"Team {team} missing from futures")
+        rnd = float(futures.at[team, "Round"])
+        out.at[idx, "win_pct"] = float(proj_win_pct[team])
+        out.at[idx, "round"] = rnd
+        out.at[idx, "w_plyf"] = round(rnd * (13 / 30), 2)
+        out.at[idx, "coy_share"] = 0.0
+        out.at[idx, "coy_rank"] = 0
+    return out
+
+
 def assemble_export(
     historical: pd.DataFrame,
     incumbents: pd.DataFrame,
@@ -315,6 +388,7 @@ def assemble_export(
     season: int,
     history_end: int,
     futures: pd.DataFrame,
+    records: pd.DataFrame | None = None,
 ) -> pd.DataFrame:
     aliases = load_abbrev_aliases()
     teams_tbl = load_teams_table()
@@ -364,6 +438,14 @@ def assemble_export(
     merged = output.merge(counting, how="left", on=["id", "year"])
     for col in ["wins", "losses", "l_plyf"]:
         merged[col] = merged[col].fillna(0).astype(int)
+    if records is not None:
+        season_mask = merged["year"] == season
+        for idx in merged.index[season_mask]:
+            team = str(merged.at[idx, "team"])
+            if team not in records.index:
+                raise KeyError(f"No season-to-date record for {team}")
+            merged.at[idx, "wins"] = int(records.at[team, "wins"])
+            merged.at[idx, "losses"] = int(records.at[team, "losses"])
 
     def ou_line(row: pd.Series) -> float:
         if int(row["year"]) < season:
@@ -383,16 +465,67 @@ def assemble_export(
     return export[EXPORT_COLUMNS + extra]
 
 
+def _keep_published_history(export: pd.DataFrame, *, season: int) -> pd.DataFrame:
+    """Swap rebuilt past seasons for the rows already in ``data/export.csv``."""
+    if not EXPORT_PATH.exists():
+        print("pace: no existing export.csv; writing rebuilt history")
+        return export
+    prior = pd.read_csv(EXPORT_PATH, index_col=0)
+    hist = prior[prior["year"] < season].copy()
+    current = export[export["year"] == season].copy()
+    for col in current.columns:
+        if col not in hist.columns:
+            hist[col] = pd.NA
+    combined = pd.concat([current, hist[current.columns]], ignore_index=True)
+    combined = combined.sort_values(by=["year"], ascending=False).reset_index(drop=True)
+    combined.index = combined.index + 1
+    print(
+        f"pace: kept {len(hist)} published historical rows; "
+        f"replaced {len(current)} rows @ {season}"
+    )
+    return combined
+
+
 def build_export(
     *,
     skip_train: bool = False,
+    pace: bool = False,
     out_path: Path | None = None,
-) -> pd.DataFrame:
+) -> pd.DataFrame | None:
     settings = load_settings()
     season = settings.season
     history_end = settings.history_end
 
     futures = build_futures(season=season, games=settings.games)
+    pace_table: pd.DataFrame | None = None
+    proj_win_pct: dict[str, float] | None = None
+    if pace:
+        from .pace import PaceError, load_pace
+        from .reference import load_abbrev_aliases
+
+        teams_tbl = load_teams_table()
+        try:
+            loaded = load_pace(
+                season=season,
+                games=settings.games,
+                preseason_wins=futures["wins_exp"],
+                aliases=load_abbrev_aliases(),
+                valid=set(teams_tbl["Abbrev"].astype(str)),
+            )
+        except PaceError as exc:
+            print(f"pace: {exc}", file=sys.stderr)
+            raise
+        if loaded.completed_games == 0:
+            print(
+                f"pace: no completed regular-season games for {season}; "
+                "not writing export"
+            )
+            return None
+        pace_table = loaded.table
+        proj_win_pct = {
+            str(team): float(pace_table.at[team, "proj_win_pct"])
+            for team in pace_table.index
+        }
 
     if skip_train and all(
         p.exists()
@@ -420,7 +553,8 @@ def build_export(
     artifact = load_artifact(MODEL_PATH)
     panel = load_base_panel()
 
-    # Incumbents: non-fired history_end rows → prediction season (keep OOF prob).
+    # Incumbents: non-fired history_end rows → prediction season.
+    # Without --pace they keep the prior season's OOF probability.
     incumbents = historical[
         (historical["year"] == history_end) & (historical["fired"] != 1)
     ].copy()
@@ -428,6 +562,28 @@ def build_export(
     incumbents["exp"] = incumbents["exp"] + 1
     incumbents["tenure"] = incumbents["tenure"] + 1
     incumbents["fired"] = 0
+    k = int(artifact.get("k", 5))
+    if proj_win_pct is not None:
+        aliases = load_abbrev_aliases()
+        valid = set(load_teams_table()["Abbrev"].astype(str))
+        incumbents = _project_season_display(
+            incumbents,
+            futures,
+            proj_win_pct,
+            aliases=aliases,
+            valid=valid,
+        )
+        incumbent_flats = build_incumbent_flats(
+            incumbents,
+            season=season,
+            history_end=history_end,
+            futures=futures,
+            panel=panel,
+            proj_win_pct=proj_win_pct,
+            k=k,
+        )
+        incumbents["prob"] = predict_proba(incumbent_flats, artifact).values
+        incumbents["pred"] = (incumbents["prob"] >= 0.5).astype(int)
 
     teams, ages = load_hires(season)
     new_coaches = build_new_coaches(
@@ -438,7 +594,8 @@ def build_export(
         futures=futures,
         artifact=artifact,
         panel=panel,
-        k=int(artifact.get("k", 5)),
+        k=k,
+        proj_win_pct=proj_win_pct,
     )
 
     export = assemble_export(
@@ -448,15 +605,24 @@ def build_export(
         season=season,
         history_end=history_end,
         futures=futures,
+        records=None if pace_table is None else pace_table[["wins", "losses"]],
     )
+    if pace:
+        # Keep the published historical snapshot. Re-assembling from OOF would
+        # rewrite every past season on a weekly upsert.
+        export = _keep_published_history(export, season=season)
 
     out_path = out_path or EXPORT_PATH
     out_path.parent.mkdir(parents=True, exist_ok=True)
     export.to_csv(out_path)
     n_season = int((export["year"] == season).sum())
     n_new = int(((export["year"] == season) & (export["tenure"] == 1)).sum())
+    try:
+        shown = out_path.resolve().relative_to(ROOT)
+    except ValueError:
+        shown = out_path
     print(
-        f"Wrote {out_path.relative_to(ROOT)}: {len(export)} rows "
+        f"Wrote {shown}: {len(export)} rows "
         f"({n_season} @ {season}, {n_new} new hires)"
     )
     return export
@@ -475,12 +641,26 @@ def build_parser() -> argparse.ArgumentParser:
         action="store_true",
         help="Reuse training.csv and LightGBM artifacts instead of rebuilding",
     )
+    p.add_argument(
+        "--pace",
+        action="store_true",
+        help=(
+            "Re-score the active season from the weekly win projection. "
+            "Exits 2 without writing when no regular-season games are complete."
+        ),
+    )
     return p
 
 
 def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
-    build_export(skip_train=args.skip_train, out_path=args.out)
+    export = build_export(
+        skip_train=args.skip_train,
+        pace=args.pace,
+        out_path=args.out,
+    )
+    if export is None:
+        return 2
     return 0
 
 

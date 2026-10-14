@@ -80,6 +80,20 @@ def load_firings(season: int | None = None) -> set[str]:
     return set(data.get("fired") or [])
 
 
+def _futures_abbrev(
+    team: str,
+    futures: pd.DataFrame,
+    *,
+    aliases: dict[str, str],
+    valid: set[str],
+) -> str:
+    """Map a coach-page abbrev (LAC) onto the futures index (SDG)."""
+    key = convert_team(team, aliases, valid)
+    if key is None or key not in futures.index:
+        raise KeyError(f"Team {team} missing from futures")
+    return str(key)
+
+
 def convert_team(
     abbrev: str,
     aliases: dict[str, str],
@@ -474,6 +488,7 @@ def new_hire_flat_row(
     futures: pd.DataFrame,
     panel: pd.DataFrame,
     k: int = DEFAULT_K,
+    proj_win_pct: float | None = None,
 ) -> dict[str, Any]:
     """Build one flattened LightGBM row for a prediction-season new hire."""
     standings = panel.attrs["standings"]
@@ -514,13 +529,17 @@ def new_hire_flat_row(
         years_since = float(season - int(coach_hist["Year"].max()) - 1)
         career_through = coach_hist
 
-    if team not in futures.index:
-        raise KeyError(f"Team {team} missing from futures")
-    round_val = float(futures.loc[team, "Round"])
+    futures_team = _futures_abbrev(team, futures, aliases=aliases, valid=valid)
+    round_val = float(futures.loc[futures_team, "Round"])
+    token_win_pct = (
+        float(futures.loc[futures_team, "win_pct"])
+        if proj_win_pct is None
+        else float(proj_win_pct)
+    )
     t0 = {
         "age": float(age),
         "playoff_round": int(round(round_val)),
-        "win_pct": float(futures.loc[team, "win_pct"]),
+        "win_pct": token_win_pct,
         "w_plyf": round(round_val * (13 / 30), 2),
         "coy_share": 0.0,
         "coy_rank": None,
@@ -554,6 +573,7 @@ def build_new_hire_flats(
     futures: pd.DataFrame,
     panel: pd.DataFrame | None = None,
     k: int = DEFAULT_K,
+    proj_win_pct: dict[str, float] | None = None,
 ) -> pd.DataFrame:
     if panel is None:
         panel = load_base_panel()
@@ -566,8 +586,147 @@ def build_new_hire_flats(
             futures=futures,
             panel=panel,
             k=k,
+            proj_win_pct=None if proj_win_pct is None else proj_win_pct[team],
         )
         for team, coach_id in teams.items()
+    ]
+    return pd.DataFrame(rows)
+
+
+def _season_token(row: pd.Series) -> dict[str, Any]:
+    return {
+        "age": float(row["age"]),
+        "playoff_round": int(row["playoff_round"]),
+        "win_pct": float(row["win_pct"]),
+        "w_plyf": float(row["w_plyf"]),
+        "coy_share": float(row["coy_share"]),
+        "coy_rank": (
+            float(row["coy_rank"]) if pd.notna(row["coy_rank"]) else None
+        ),
+        "tenure_idx": int(row["tenure"]),
+    }
+
+
+def incumbent_flat_row(
+    coach_id: str,
+    team: str,
+    *,
+    season: int,
+    history_end: int,
+    futures: pd.DataFrame,
+    panel: pd.DataFrame,
+    proj_win_pct: float,
+    k: int = DEFAULT_K,
+) -> dict[str, Any]:
+    """Roll a continuing coach one year and score the projected season as t0.
+
+    Playoff round stays on the preseason futures mapping. Win% is the weekly
+    projection. Coach of the Year stays empty until votes exist.
+    """
+    standings = panel.attrs["standings"]
+    playoffs_pivot = panel.attrs["playoffs_pivot"]
+    franchise_map = panel.attrs.get("franchise_map") or load_franchise_map()
+
+    coach_hist = panel[panel["id"] == coach_id].sort_values("Year")
+    end_rows = coach_hist[coach_hist["Year"] == history_end]
+    if end_rows.empty:
+        raise KeyError(f"No {history_end} panel row for incumbent {coach_id}")
+    last = end_rows.iloc[-1]
+    if str(last["Tm"]) != team:
+        raise KeyError(
+            f"{coach_id} {history_end} team {last['Tm']} != export team {team}"
+        )
+
+    stop = coach_hist[coach_hist["stop_id"] == last["stop_id"]].sort_values("Year")
+    prior = coach_hist[coach_hist["stop_id"] < last["stop_id"]]
+    sequence = [_season_token(row) for _, row in stop.iterrows()]
+
+    aliases = panel.attrs.get("aliases") or load_abbrev_aliases()
+    valid = panel.attrs.get("valid") or set(
+        pd.read_csv(ROOT / "config" / "teams.csv")["Abbrev"].astype(str)
+    )
+    futures_team = _futures_abbrev(team, futures, aliases=aliases, valid=valid)
+    round_val = float(futures.loc[futures_team, "Round"])
+    sequence.append(
+        {
+            "age": float(last["age"]) + 1,
+            "playoff_round": int(round(round_val)),
+            "win_pct": float(proj_win_pct),
+            "w_plyf": round(round_val * (13 / 30), 2),
+            "coy_share": 0.0,
+            "coy_rank": None,
+            "tenure_idx": int(last["tenure"]) + 1,
+        }
+    )
+
+    hire_year = int(stop.iloc[0]["Year"])
+    tm_key = stop.iloc[0]["tm_key"]
+    if pd.isna(tm_key):
+        tm_key = None
+    else:
+        tm_key = str(tm_key)
+    prehire = _prehire_context(
+        tm_key,
+        hire_year,
+        standings,
+        playoffs_pivot,
+        franchise_map=franchise_map,
+    )
+    if prior.empty:
+        years_since = float("nan")
+    else:
+        years_since = float(hire_year - int(prior["Year"].max()) - 1)
+
+    context = {
+        "exp": int(last["exp"]) + 1,
+        "tenure": int(last["tenure"]) + 1,
+        "poc": int(last["poc"]),
+        **_prior_context(prior),
+        **_career_sb_context(coach_hist[coach_hist["Year"] <= history_end]),
+        "years_since_last_hc": years_since,
+        **prehire,
+    }
+    return _flatten_sequence(
+        context,
+        sequence,
+        coach_id=coach_id,
+        year=season,
+        team=team,
+        k=k,
+        fired=0,
+    )
+
+
+def build_incumbent_flats(
+    incumbents: pd.DataFrame,
+    *,
+    season: int,
+    history_end: int,
+    futures: pd.DataFrame,
+    panel: pd.DataFrame,
+    proj_win_pct: dict[str, float],
+    k: int = DEFAULT_K,
+) -> pd.DataFrame:
+    aliases = panel.attrs.get("aliases") or load_abbrev_aliases()
+    valid = panel.attrs.get("valid") or set(
+        pd.read_csv(ROOT / "config" / "teams.csv")["Abbrev"].astype(str)
+    )
+    rows = [
+        incumbent_flat_row(
+            str(row["id"]),
+            str(row["tm"]),
+            season=season,
+            history_end=history_end,
+            futures=futures,
+            panel=panel,
+            proj_win_pct=proj_win_pct[
+                _futures_abbrev(
+                    str(row["tm"]), futures, aliases=aliases, valid=valid
+                )
+            ],
+            k=k,
+        )
+        for _, row in incumbents.iterrows()
     ]
     return pd.DataFrame(rows)
 

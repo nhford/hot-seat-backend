@@ -13,9 +13,18 @@ ARI: CRD   # Arizona Cardinals
 BAL: RAV   # Baltimore Ravens (modern); Colts-era BAL → CLT via franchise_map
 LAC: SDG   # Los Angeles Chargers
 LVR: RAI   # Las Vegas Raiders
+LV: RAI    # nflverse / VegasInsider
 LAR: RAM   # Los Angeles Rams
+LA: RAM    # nflverse / VegasInsider
 STL: RAM   # St. Louis Rams (same franchise)
 IND: CLT   # Indianapolis Colts
+GB: GNB    # Green Bay Packers
+KC: KAN    # Kansas City Chiefs
+NE: NWE    # New England Patriots
+"NO": NOR  # New Orleans Saints (quote: YAML treats bare NO as false)
+SF: SFO    # San Francisco 49ers
+TB: TAM    # Tampa Bay Buccaneers
+JAC: JAX   # Jacksonville Jaguars (VegasInsider)
 DTX: KAN   # Dallas Texans → Chiefs
 OAK: RAI   # Oakland Raiders
 BOS: NWE   # Boston Patriots

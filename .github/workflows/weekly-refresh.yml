@@ -1,0 +1,47 @@
+name: Weekly refresh
+
+on:
+  schedule:
+    # Tuesday 15:00 UTC, after Monday Night Football.
+    - cron: "0 15 * * 2"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install pipeline dependencies
+        run: pip install -r requirements.txt
+
+      - name: Score current season
+        id: score
+        run: |
+          set +e
+          python -m src.score --skip-train --pace
+          code=$?
+          set -e
+          if [ "$code" -eq 2 ]; then
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            echo "No completed games; skipping Supabase export"
+            exit 0
+          fi
+          if [ "$code" -ne 0 ]; then
+            exit "$code"
+          fi
+          echo "skip=false" >> "$GITHUB_OUTPUT"
+
+      - name: Publish to Supabase
+        if: steps.score.outputs.skip != 'true'
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE: ${{ secrets.SUPABASE_SERVICE_ROLE }}
+        run: python -m src.export
