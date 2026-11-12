@@ -4,9 +4,12 @@ Scores historical coach-seasons with LightGBM (GroupKFold OOF from `src.fit`),
 rolls non-fired coaches from `history_end` into `season`, synthesizes new-hire
 rows from `config/<season>/hires.yaml` + futures, and writes the display table.
 
+After a successful write, the CLI scores the What If grid (`data/what_if.csv`)
+from the same artifact so the tab cannot drift. Exit code 2 means the season
+has no completed games and neither file was written.
+
 ``--pace`` re-scores every active-season coach from the weekly win projection
 (market season total, or a results blend when the board is missing a team).
-Exit code 2 means the season has no completed games and the export was not written.
 
 Usage (from repo root):
 
@@ -661,6 +664,9 @@ def main(argv: list[str] | None = None) -> int:
     )
     if export is None:
         return 2
+    from .whatif import write_what_if
+
+    write_what_if()
     return 0
 
 
