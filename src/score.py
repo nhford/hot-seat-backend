@@ -410,7 +410,9 @@ def assemble_export(
     )
     output["win_pct_proj"] = output["win_pct"]
 
-    # Display: tenure-1 rows inherit predecessor win_pct / deltas from history_end.
+    # Prediction-season hires have no prior stop here. Show the fired
+    # predecessor's win_pct and deltas from history_end. Historical
+    # tenure-1 seasons keep the record they actually posted.
     fired_prev = historical[
         (historical["year"] == history_end) & (historical["fired"] == 1)
     ][["tm", *DELTA_STATS]].copy()
@@ -421,7 +423,7 @@ def assemble_export(
         row["team"]: {stat: row[stat] for stat in DELTA_STATS}
         for _, row in fired_prev.iterrows()
     }
-    new_mask = output["tenure"] == 1
+    new_mask = (output["year"].astype(int) == season) & (output["tenure"] == 1)
     for stat in DELTA_STATS:
         output.loc[new_mask, stat] = output.loc[new_mask, "team"].map(
             lambda t, s=stat: fired_map.get(t, {}).get(s, 0)
